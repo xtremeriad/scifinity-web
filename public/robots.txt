@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://scifinity.edu.bd/sitemap.xml
