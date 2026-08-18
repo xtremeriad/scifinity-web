@@ -311,6 +311,7 @@ export class Router {
 
         const payload = {
           fullName: (formData.get('fullName') as string) || '',
+          email: (formData.get('email') as string) || '',
           currentProgram: (formData.get('currentProgram') as any) || '',
           targetSubjects,
           phoneNumber: (formData.get('phoneNumber') as string) || '',
@@ -322,7 +323,7 @@ export class Router {
         const { isValid, errors } = validateAdmissionForm(payload);
 
         // Reset errors
-        ['fullName', 'currentProgram', 'phoneNumber', 'preferredLocation', 'preferredBatch', 'reasonForApplying'].forEach(field => {
+        ['fullName', 'email', 'currentProgram', 'phoneNumber', 'preferredLocation', 'preferredBatch', 'reasonForApplying'].forEach(field => {
           const errorEl = document.getElementById(`${field}Error`);
           const inputEl = document.getElementById(field);
           if (errorEl) errorEl.style.display = 'none';

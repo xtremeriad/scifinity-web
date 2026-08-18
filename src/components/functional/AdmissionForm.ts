@@ -75,13 +75,23 @@ export function renderAdmissionForm(): string {
           </div>
         </div>
 
-        <!-- Phone Number -->
-        <div class="form-group">
-          <label for="phoneNumber" class="form-label">
-            Contact Phone Number <span class="required-indicator">*</span>
-          </label>
-          <input type="tel" id="phoneNumber" name="phoneNumber" class="form-input" placeholder="e.g. +880 1712 345678" required autocomplete="tel">
-          <div class="form-error-msg" id="phoneNumberError" style="display: none;"></div>
+        <!-- Phone Number & Email Address -->
+        <div class="grid grid-2 gap-4">
+          <div class="form-group">
+            <label for="phoneNumber" class="form-label">
+              Contact Phone Number <span class="required-indicator">*</span>
+            </label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-input" placeholder="e.g. 01711 997941" required autocomplete="tel">
+            <div class="form-error-msg" id="phoneNumberError" style="display: none;"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">
+              Email Address <span class="text-muted" style="font-weight: 400; font-size: 12px;">(Optional)</span>
+            </label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="e.g. student@example.com" autocomplete="email">
+            <div class="form-error-msg" id="emailError" style="display: none;"></div>
+          </div>
         </div>
 
         <div class="grid grid-2 gap-4">

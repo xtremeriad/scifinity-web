@@ -78,6 +78,7 @@ export interface VaultResource {
 
 export interface AdmissionFormData {
   fullName: string;
+  email?: string;
   currentProgram: 'SSC' | 'HSC' | 'Admission Test' | '';
   targetSubjects: string[];
   phoneNumber: string;

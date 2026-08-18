@@ -119,6 +119,7 @@ async function runSuite() {
 
   const validPayload = {
     fullName: 'Tanvir Ahmed',
+    email: 'tanvir.test@example.com',
     currentProgram: 'HSC' as const,
     targetSubjects: ['Higher Mathematics', 'Physics'],
     phoneNumber: '01711-997941',
@@ -133,9 +134,11 @@ async function runSuite() {
   const spamResult = await submitAdmissionApplication(validPayload, 'bot-spam-content');
   assert(!spamResult.success && spamResult.error === 'SPAM_DETECTED', 'Honeypot trap catches automated bot submissions');
 
-  const prototypeResult = await submitAdmissionApplication(validPayload, '');
-  assert(prototypeResult.success && prototypeResult.mode === 'UNCONFIGURED_PROTOTYPE', 'Service cleanly handles unconfigured prototype mode');
-  assert(Boolean(prototypeResult.referenceId), 'Service issues trackable reference code for applicants');
+  assert(SCIFINITY_OWNER_DATA.api.isConfigured === true, 'Google Apps Script endpoint is active & configured');
+  assert(SCIFINITY_OWNER_DATA.api.admissionEndpoint.includes('AKfycbzHGaVXlmJ4EHVhS_wmBeMQdp5A26e2xj7eeZ_m21v0AK__oXEW06shztBohT0DWsRv'), 'Exact Google Apps Script Web App endpoint URL configured');
+
+  const liveResult = await submitAdmissionApplication(validPayload, '');
+  assert(liveResult.success && Boolean(liveResult.referenceId), 'Service successfully posts to endpoint and returns reference code');
 
   console.log(`\n========================================`);
   console.log(`QA AUDIT RESULT: ${passedCount} PASSED, ${failedCount} FAILED`);

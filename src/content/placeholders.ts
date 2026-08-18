@@ -217,12 +217,12 @@ export const SCIFINITY_OWNER_DATA: OwnerPlaceholders = {
     guardianQuotes: []
   },
 
-  // 7. Admission Form / Submission (Configured Email, Pending Webhook)
+  // 7. Admission Form / Submission (Connected to Google Apps Script Endpoint)
   api: {
     notificationEmail: 'team.scifinity@gmail.com',
-    admissionEndpoint: '', // Pending official submission webhook/endpoint
-    isConfigured: false,
-    statusNote: 'Submission endpoint pending backend webhook configuration. Applications are currently validated on the client and issued local verification reference tokens.'
+    admissionEndpoint: 'https://script.google.com/macros/s/AKfycbzHGaVXlmJ4EHVhS_wmBeMQdp5A26e2xj7eeZ_m21v0AK__oXEW06shztBohT0DWsRv/exec',
+    isConfigured: true,
+    statusNote: 'Connected to Google Apps Script Web App endpoint.'
   },
 
   // 8. Bangla Content Approval (Later)
