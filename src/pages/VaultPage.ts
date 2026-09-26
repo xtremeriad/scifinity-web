@@ -12,12 +12,12 @@ export function renderVaultPage(): string {
   return `
     <main id="main-content">
       <!-- Hero -->
-      <section class="section section-hero">
+      <section class="section section-hero section-atmosphere-vault">
         <div class="container container-narrow text-center">
           <span class="text-label mb-3" style="display: inline-block;">${c.hero.eyebrow}</span>
           <h1 class="text-h1 display-title mb-4">${c.hero.headline}</h1>
-          <p class="text-lead max-w-prose mx-auto mb-4">${c.hero.supporting}</p>
-          <span class="badge badge-accent">${c.hero.accessNotice}</span>
+          <p class="text-lead max-w-prose mx-auto mb-5" style="color: var(--color-text-secondary);">${c.hero.supporting}</p>
+          <span class="badge badge-accent" style="font-weight: 600; padding: 6px 14px; font-size: 13.5px;">${c.hero.accessNotice}</span>
         </div>
       </section>
 
@@ -42,18 +42,18 @@ export function renderVaultPage(): string {
           <!-- Resource Cards Grid -->
           <div class="grid grid-3 gap-6" id="vaultGrid">
             ${c.resources.map(res => `
-              <div class="card card-interactive flex flex-col justify-between" data-category="${res.category}">
+              <div class="card card-interactive flex flex-col justify-between" data-category="${res.category}" style="padding: var(--space-6);">
                 <div>
                   <div class="flex items-center justify-between mb-3">
-                    <span class="badge badge-accent">${res.category}</span>
-                    <span class="text-small text-muted">${res.level}</span>
+                    <span class="badge badge-accent" style="font-size: 11px;">${res.category}</span>
+                    <span class="text-small text-muted" style="font-weight: 600;">${res.level}</span>
                   </div>
-                  <h3 class="text-h4 mb-3" style="font-size: 19px;">${res.title}</h3>
-                  <p class="text-body text-muted mb-4" style="font-size: 15px;">${res.description}</p>
+                  <h3 class="text-h4 mb-3" style="font-size: 19px; color: var(--color-ink); line-height: 1.4;">${res.title}</h3>
+                  <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.6;">${res.description}</p>
                 </div>
-                <div class="flex items-center justify-between pt-3" style="border-top: 1px solid var(--color-border-subtle);">
-                  <span class="text-small text-muted">${res.readTime}</span>
-                  <span class="text-small" style="color: var(--color-primary); font-weight: 600;">Free Access &rarr;</span>
+                <div class="flex items-center justify-between pt-4" style="border-top: 1px solid var(--color-border-subtle);">
+                  <span class="text-small text-muted" style="font-weight: 500;">${res.readTime}</span>
+                  <span class="text-small" style="color: var(--color-primary); font-weight: 700;">Free Access &rarr;</span>
                 </div>
               </div>
             `).join('')}
@@ -64,13 +64,13 @@ export function renderVaultPage(): string {
       <!-- Planned Expansion Notice -->
       <section class="section section-surface">
         <div class="container container-narrow">
-          <div class="card" style="padding: var(--space-8); border: 1px solid #BAE6FD; background: #F0F9FF; text-align: center;">
-            <div class="flex items-center justify-center gap-2 mb-3">
+          <div class="card card-elevated" style="padding: var(--space-8); border: 1.5px solid #BAE6FD; background: linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 100%); text-align: center;">
+            <div class="flex items-center justify-center gap-2 mb-3 flex-wrap">
               <span class="text-label" style="color: #0284C7;">${c.plannedExpansion.eyebrow}</span>
               ${renderStatusBadge(c.plannedExpansion.status)}
             </div>
-            <h3 class="text-h3 mb-3" style="color: #0369A1;">${c.plannedExpansion.headline}</h3>
-            <p class="text-body max-w-prose mx-auto" style="color: #0C4A6E;">
+            <h3 class="text-h3 mb-3" style="color: #0369A1; font-size: 24px;">${c.plannedExpansion.headline}</h3>
+            <p class="text-body max-w-prose mx-auto" style="color: #0C4A6E; line-height: 1.65; font-size: 15.5px;">
               ${c.plannedExpansion.description}
             </p>
           </div>

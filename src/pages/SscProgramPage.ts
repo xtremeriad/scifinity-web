@@ -1,6 +1,8 @@
 /* ==========================================================================
    PAGE 05 — SSC PROGRAM VIEW CONTROLLER
    Source: 06_PROGRAM_SSC.md
+   SCIFINITY Design System V2.0 — SSC Program Detail
+   ABSOLUTE CONTENT LOCK: All text, structure & links 100% exact
    ========================================================================== */
 
 import { SSC_PROGRAM_CONTENT } from '../content/en/programs.ts';
@@ -11,61 +13,68 @@ export function renderSscProgramPage(): string {
 
   return `
     <main id="main-content">
-      <!-- Hero -->
+      <!-- ==================================================================
+           Hero
+           ================================================================== -->
       <section class="section section-hero">
         <div class="container container-narrow text-center">
-          <span class="text-label mb-3" style="display: inline-block;">${c.hero.eyebrow}</span>
-          <h1 class="text-h1 display-title mb-4">${c.hero.headline}</h1>
-          <p class="text-lead max-w-prose mx-auto">${c.hero.positioning}</p>
-          <div class="mt-6 flex gap-4 justify-center">
-            <a href="/admission?prog=ssc" class="btn btn-primary" data-route="/admission">Apply for SSC Batch</a>
-            <a href="/system" class="btn btn-secondary" data-route="/system">Explore Our System</a>
+          <span class="badge badge-primary mb-3" style="padding: 5px 12px; font-size: 12px;">${c.hero.eyebrow}</span>
+          <h1 class="text-display mb-4" style="color: var(--color-ink);">${c.hero.headline}</h1>
+          <p class="text-lead max-w-prose mx-auto" style="color: var(--color-text-secondary);">${c.hero.positioning}</p>
+          <div class="mt-6 flex gap-4 justify-center flex-wrap">
+            <a href="/admission?prog=ssc" class="btn btn-primary btn-lg" data-route="/admission">Apply for SSC Batch &rarr;</a>
+            <a href="/system" class="btn btn-secondary btn-lg" data-route="/system">Explore Our System</a>
           </div>
         </div>
       </section>
 
-      <!-- Subject Breakdown -->
-      <section class="section">
+      <!-- ==================================================================
+           Subject Breakdown
+           ================================================================== -->
+      <section class="section section-atmosphere-system">
         <div class="container">
           <div class="max-w-prose mb-8">
             <span class="text-label">SUBJECT FOCUS</span>
-            <h2 class="text-h2 mt-2">Comprehensive 4-Subject Syllabus Mastery</h2>
+            <h2 class="text-h2 mt-2" style="color: var(--color-ink);">Comprehensive 4-Subject Syllabus Mastery</h2>
           </div>
 
           <div class="grid grid-2 gap-6">
-            ${c.subjects.map(s => `
-              <div class="card card-interactive">
-                <h3 class="text-h3" style="font-size: 20px; color: var(--color-primary); margin-bottom: 8px;">${s.name}</h3>
-                <p class="text-body text-muted">${s.focus}</p>
+            ${c.subjects.map((s, idx) => `
+              <div class="card card-interactive" style="padding: var(--space-6); background: #FFFFFF; border-left: 4px solid ${idx === 0 ? 'var(--color-navy)' : idx === 1 ? 'var(--color-teal)' : idx === 2 ? 'var(--color-purple)' : 'var(--color-gold)'};">
+                <span class="badge ${idx === 0 ? 'badge-primary' : idx === 1 ? 'badge-teal' : idx === 2 ? 'badge-purple' : 'badge-gold'} mb-2">Subject 0${idx + 1}</span>
+                <h3 class="text-h3" style="font-size: 20px; color: var(--color-ink); margin-bottom: 8px;">${s.name}</h3>
+                <p class="text-body text-muted" style="margin: 0; line-height: 1.65;">${s.focus}</p>
               </div>
             `).join('')}
           </div>
         </div>
       </section>
 
-      <!-- Methodology & Assessment -->
-      <section class="section section-surface">
+      <!-- ==================================================================
+           Methodology & Assessment
+           ================================================================== -->
+      <section class="section section-atmosphere-beliefs">
         <div class="container">
           <div class="grid grid-2 gap-8">
-            <div class="card" style="padding: var(--space-6);">
+            <div class="card card-elevated" style="padding: var(--space-7); background: #FFFFFF;">
               <span class="text-label">TEACHING METHOD</span>
-              <h3 class="text-h3 mt-2 mb-4">${c.methodology.headline}</h3>
-              <ul class="flex flex-col gap-3">
+              <h3 class="text-h3 mt-2 mb-4" style="color: var(--color-ink);">${c.methodology.headline}</h3>
+              <ul class="flex flex-col gap-3" style="padding-left: 0; list-style: none; margin: 0;">
                 ${c.methodology.points.map(p => `
-                  <li class="text-body text-muted" style="display: flex; gap: 8px;">
-                    <span style="color: var(--color-primary); font-weight: 700;">&bull;</span>
+                  <li class="text-body text-muted flex items-start gap-2" style="line-height: 1.6;">
+                    <span style="color: var(--color-navy); font-weight: 800;">&bull;</span>
                     <span>${p}</span>
                   </li>
                 `).join('')}
               </ul>
             </div>
 
-            <div class="card" style="padding: var(--space-6);">
+            <div class="card card-elevated" style="padding: var(--space-7); background: #FFFFFF;">
               <span class="text-label">STUDENT PROFILE</span>
-              <h3 class="text-h3 mt-2 mb-4">${c.studentFit.headline}</h3>
-              <p class="text-body text-muted mb-4">${c.studentFit.text}</p>
-              <div class="p-4" style="background: var(--color-surface-muted); border-radius: var(--radius-sm);">
-                <p class="text-small" style="font-weight: 600; color: var(--color-ink);">
+              <h3 class="text-h3 mt-2 mb-4" style="color: var(--color-ink);">${c.studentFit.headline}</h3>
+              <p class="text-body text-muted mb-4" style="line-height: 1.65;">${c.studentFit.text}</p>
+              <div class="p-4" style="background: var(--color-surface-muted); border: 1px solid var(--color-border); border-radius: var(--radius-sm); box-shadow: var(--shadow-lvl1);">
+                <p class="text-small" style="font-weight: 600; color: var(--color-ink); margin: 0; line-height: 1.55;">
                   Note: Prior weak marks do not disqualify a student. Sincerity and active participation in class debugging sessions are the sole prerequisites.
                 </p>
               </div>
@@ -74,21 +83,23 @@ export function renderSscProgramPage(): string {
         </div>
       </section>
 
-      <!-- Batch and Location Info -->
-      <section class="section">
+      <!-- ==================================================================
+           Batch and Location Info
+           ================================================================== -->
+      <section class="section section-atmosphere-vault">
         <div class="container">
           <div class="max-w-prose mb-6">
             <span class="text-label">BATCH & LOCATION SPECS</span>
-            <h2 class="text-h2 mt-2">Class Structure for SSC</h2>
+            <h2 class="text-h2 mt-2" style="color: var(--color-ink);">Class Structure for SSC</h2>
           </div>
 
           <div class="grid grid-4 gap-4">
-            ${BATCHES.map(b => `
-              <div class="card" style="padding: var(--space-4);">
-                <span class="badge badge-primary mb-2">SSC Cohort</span>
-                <h4 class="text-h4" style="font-size: 18px;">Batch ${b.name}</h4>
-                <p class="text-small text-muted mt-2">Max ${b.maxStudents} Students</p>
-                <div class="mt-2">
+            ${BATCHES.map((b, idx) => `
+              <div class="card card-interactive" style="padding: var(--space-5); background: #FFFFFF; border-top: 3px solid ${idx % 2 === 0 ? 'var(--color-navy)' : 'var(--color-teal)'};">
+                <span class="badge ${idx % 2 === 0 ? 'badge-primary' : 'badge-teal'} mb-2">SSC Cohort</span>
+                <h4 class="text-h4" style="font-size: 18px; margin: 0; color: var(--color-ink);">Batch ${b.name}</h4>
+                <p class="text-small text-muted mt-2 mb-2" style="font-weight: 600;">Max ${b.maxStudents} Students</p>
+                <div>
                   <span class="status-tag placeholder">${c.batchLocations.scheduleStatus}</span>
                 </div>
               </div>
@@ -97,7 +108,9 @@ export function renderSscProgramPage(): string {
         </div>
       </section>
 
-      <!-- Final CTA -->
+      <!-- ==================================================================
+           Final CTA
+           ================================================================== -->
       <section class="section section-dark text-center">
         <div class="container container-narrow">
           <h2 class="text-h2 mb-4" style="color: #FFFFFF;">Build a Strong Foundation for SSC</h2>

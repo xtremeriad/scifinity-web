@@ -12,12 +12,12 @@ export function renderGoldenSeatPage(): string {
   return `
     <main id="main-content">
       <!-- Hero -->
-      <section class="section section-hero" style="background: linear-gradient(180deg, #FFFDF7 0%, var(--color-background) 100%);">
+      <section class="section section-hero" style="background: radial-gradient(circle at 50% 15%, rgba(214, 158, 46, 0.1) 0%, transparent 60%), linear-gradient(180deg, #FFFDF8 0%, var(--color-surface) 100%);">
         <div class="container container-narrow text-center">
-          <span class="badge badge-gold mb-3">${c.hero.eyebrow}</span>
-          <h1 class="text-h1 display-title mb-4" style="color: #1F2937;">${c.hero.headline}</h1>
-          <p class="text-lead max-w-prose mx-auto" style="color: #4B5563;">${c.hero.supporting}</p>
-          <div class="mt-6 flex gap-4 justify-center flex-wrap">
+          <span class="badge badge-gold mb-3" style="font-weight: 700; letter-spacing: 0.06em;">${c.hero.eyebrow}</span>
+          <h1 class="text-h1 display-title mb-4" style="color: var(--color-ink);">${c.hero.headline}</h1>
+          <p class="text-lead max-w-prose mx-auto mb-6" style="color: var(--color-text-secondary);">${c.hero.supporting}</p>
+          <div class="flex gap-4 justify-center flex-wrap">
             <a href="/admission?type=golden-seat" class="btn btn-gold btn-lg" data-route="/admission">
               Apply for the Golden Seat &rarr;
             </a>
@@ -32,16 +32,22 @@ export function renderGoldenSeatPage(): string {
       <section class="section">
         <div class="container">
           <div class="max-w-prose mb-8">
-            <span class="text-label" style="color: #B45309;">${c.principles.eyebrow}</span>
+            <span class="text-label" style="color: var(--color-gold-dark);">${c.principles.eyebrow}</span>
             <h2 class="text-h2 mt-2">${c.principles.headline}</h2>
             <p class="text-lead text-muted mt-2">${c.principles.description}</p>
           </div>
 
           <div class="grid grid-2 gap-6">
-            ${c.principles.criteria.map(cr => `
-              <div class="card card-gold">
-                <h3 class="text-h3" style="font-size: 20px; color: #92400E; margin-bottom: 8px;">${cr.title}</h3>
-                <p class="text-body text-muted">${cr.desc}</p>
+            ${c.principles.criteria.map((cr, idx) => `
+              <div class="card card-interactive card-gold" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-label" style="font-size: 11px; color: var(--color-gold-dark);">CRITERION 0${idx + 1}</span>
+                    <span style="color: var(--color-gold-dark); font-size: 16px;">✦</span>
+                  </div>
+                  <h3 class="text-h3" style="font-size: 20px; color: var(--color-gold-dark); margin-bottom: 8px;">${cr.title}</h3>
+                  <p class="text-body text-muted" style="line-height: 1.6;">${cr.desc}</p>
+                </div>
               </div>
             `).join('')}
           </div>
@@ -58,13 +64,20 @@ export function renderGoldenSeatPage(): string {
 
           <div class="grid grid-2 gap-8">
             ${c.applicationRoutes.pathways.map(p => `
-              <div class="card card-interactive" style="padding: var(--space-6);">
-                <span class="badge badge-primary mb-3">Pathway ${p.number}</span>
-                <h3 class="text-h3" style="font-size: 22px; margin-bottom: 8px;">${p.title}</h3>
-                <p class="text-body text-muted mb-6">${p.desc}</p>
-                <a href="/admission?type=${p.number === '01' ? 'golden-seat' : 'nomination'}" class="btn btn-secondary btn-sm" data-route="/admission">
-                  ${p.cta} &rarr;
-                </a>
+              <div class="card card-interactive" style="padding: var(--space-7); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="badge badge-primary">Pathway ${p.number}</span>
+                    <span class="text-label" style="font-size: 11px;">DIRECT ROUTE</span>
+                  </div>
+                  <h3 class="text-h3" style="font-size: 22px; margin-bottom: 10px; color: var(--color-ink);">${p.title}</h3>
+                  <p class="text-body text-muted mb-6" style="line-height: 1.65;">${p.desc}</p>
+                </div>
+                <div>
+                  <a href="/admission?type=${p.number === '01' ? 'golden-seat' : 'nomination'}" class="btn btn-secondary btn-sm" data-route="/admission">
+                    ${p.cta} &rarr;
+                  </a>
+                </div>
               </div>
             `).join('')}
           </div>
@@ -75,22 +88,22 @@ export function renderGoldenSeatPage(): string {
       <section class="section">
         <div class="container">
           <div class="grid grid-3 gap-6">
-            <div class="card" style="padding: var(--space-6);">
+            <div class="card card-interactive" style="padding: var(--space-6);">
               <span class="text-label">${c.applicationWindow.eyebrow}</span>
-              <h3 class="text-h3 mt-2 mb-3" style="font-size: 20px;">${c.applicationWindow.headline}</h3>
-              <p class="text-body text-muted">${c.applicationWindow.text}</p>
+              <h3 class="text-h3 mt-2 mb-3" style="font-size: 20px; color: var(--color-ink);">${c.applicationWindow.headline}</h3>
+              <p class="text-body text-muted" style="line-height: 1.6;">${c.applicationWindow.text}</p>
             </div>
 
-            <div class="card" style="padding: var(--space-6);">
+            <div class="card card-interactive" style="padding: var(--space-6);">
               <span class="text-label">EVALUATION PROCESS</span>
-              <h3 class="text-h3 mt-2 mb-3" style="font-size: 20px;">${c.evaluationAndCoverage.evaluator}</h3>
-              <p class="text-body text-muted">${c.evaluationAndCoverage.evaluatorDesc}</p>
+              <h3 class="text-h3 mt-2 mb-3" style="font-size: 20px; color: var(--color-ink);">${c.evaluationAndCoverage.evaluator}</h3>
+              <p class="text-body text-muted" style="line-height: 1.6;">${c.evaluationAndCoverage.evaluatorDesc}</p>
             </div>
 
-            <div class="card" style="padding: var(--space-6);">
+            <div class="card card-interactive" style="padding: var(--space-6);">
               <span class="text-label">BENEFIT SCOPE</span>
-              <h3 class="text-h3 mt-2 mb-3" style="font-size: 20px;">${c.evaluationAndCoverage.coverageTitle}</h3>
-              <p class="text-body text-muted">${c.evaluationAndCoverage.coverageDesc}</p>
+              <h3 class="text-h3 mt-2 mb-3" style="font-size: 20px; color: var(--color-ink);">${c.evaluationAndCoverage.coverageTitle}</h3>
+              <p class="text-body text-muted" style="line-height: 1.6;">${c.evaluationAndCoverage.coverageDesc}</p>
             </div>
           </div>
         </div>
@@ -99,19 +112,19 @@ export function renderGoldenSeatPage(): string {
       <!-- Accountability & Approved Continuation Criteria -->
       <section class="section section-surface">
         <div class="container container-narrow">
-          <div class="card" style="padding: var(--space-8); border: 1px solid #FEDF89; background: #FFFAEB;">
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-label" style="color: #B54708;">${c.accountability.eyebrow}</span>
+          <div class="card card-elevated" style="padding: var(--space-8); border: 1.5px solid var(--color-gold-border); background: linear-gradient(180deg, #FFFCF2 0%, #FFF9E6 100%);">
+            <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+              <span class="text-label" style="color: var(--color-gold-dark);">${c.accountability.eyebrow}</span>
               <span class="status-tag confirmed">Approved Policy</span>
             </div>
-            <h3 class="text-h3 mb-3" style="font-size: 22px; color: #7A2E0E;">${c.accountability.headline}</h3>
-            <p class="text-body mb-4" style="color: #7A2E0E;">
+            <h3 class="text-h3 mb-3" style="font-size: 24px; color: #7A2E0E;">${c.accountability.headline}</h3>
+            <p class="text-body mb-5" style="color: #7A2E0E; line-height: 1.65; font-size: 15.5px;">
               ${c.accountability.description}
             </p>
-            <ul class="flex flex-col gap-3">
+            <ul class="flex flex-col gap-3" style="list-style: none; padding: 0; margin: 0;">
               ${c.accountability.criteria.map(crit => `
-                <li class="flex items-start gap-2" style="font-size: 15px; color: #7A2E0E;">
-                  <span style="font-weight: 700; color: #B45309;">&bull;</span>
+                <li class="flex items-start gap-3" style="font-size: 15px; color: #7A2E0E; line-height: 1.6;">
+                  <span style="font-weight: 800; color: #D97706; font-size: 18px; line-height: 1.2;">✦</span>
                   <span>${crit}</span>
                 </li>
               `).join('')}

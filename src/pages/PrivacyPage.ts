@@ -26,14 +26,14 @@ export function renderPrivacyPage(): string {
 
       <section class="section">
         <div class="container container-prose">
-          <div class="card" style="padding: var(--space-8); background: #FFFFFF; line-height: 1.8;">
+          <div class="card card-elevated" style="padding: var(--space-8); background: #FFFFFF; line-height: 1.8;">
             
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">1. Introduction & Scope</h2>
-            <p class="text-body text-muted mb-6">
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">1. Introduction & Scope</h2>
+            <p class="text-body text-muted mb-6" style="line-height: 1.7;">
               SCIFINITY ("we", "our", or "the Institution") is committed to safeguarding the privacy and personal data of our students, prospective applicants, and their legal guardians. This Privacy Policy outlines the types of information we collect, how it is utilized to facilitate small-batch academic mentorship, and the strict security measures governing its storage.
             </p>
 
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">2. Information We Collect</h2>
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">2. Information We Collect</h2>
             <p class="text-body text-muted mb-3">To process batch admissions and deliver tailored instruction, we collect:</p>
             <ul class="flex flex-col gap-2 mb-6" style="padding-left: 20px;">
               <li class="text-body text-muted">&bull; <strong>Applicant Identification:</strong> Student's full name, academic institution, target board/examination class (SSC, HSC, or Admission Test), and preferred center.</li>
@@ -41,7 +41,7 @@ export function renderPrivacyPage(): string {
               <li class="text-body text-muted">&bull; <strong>Academic Baseline & Motivation:</strong> Statements of intent, learning difficulties, and academic objectives submitted through our admission form.</li>
             </ul>
 
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">3. How We Use Your Information</h2>
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">3. How We Use Your Information</h2>
             <p class="text-body text-muted mb-3">The personal information provided to SCIFINITY is used strictly for legitimate educational purposes, including:</p>
             <ul class="flex flex-col gap-2 mb-6" style="padding-left: 20px;">
               <li class="text-body text-muted">&bull; Evaluating applicant mindset and allocating 15-student cohort placements.</li>
@@ -50,37 +50,37 @@ export function renderPrivacyPage(): string {
               <li class="text-body text-muted">&bull; Evaluating eligibility for the Golden Seat tuition-free support initiative.</li>
             </ul>
 
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">4. Confidentiality & Non-Disclosure</h2>
-            <p class="text-body text-muted mb-6">
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">4. Confidentiality & Non-Disclosure</h2>
+            <p class="text-body text-muted mb-6" style="line-height: 1.7;">
               SCIFINITY does not sell, rent, lease, or commercially trade student or guardian contact details to third-party advertisers or commercial entities. Personal information is only disclosed if strictly required by applicable law, court order, or to protect the safety of students on our premises.
             </p>
 
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">5. Data Storage & Security Measures</h2>
-            <p class="text-body text-muted mb-6">
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">5. Data Storage & Security Measures</h2>
+            <p class="text-body text-muted mb-6" style="line-height: 1.7;">
               We implement industry-standard administrative, physical, and technical safeguards to protect collected data against unauthorized access, loss, alteration, or misuse. Access to applicant records is restricted strictly to the founder and authorized administrative personnel.
             </p>
 
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">6. Minor & Guardian Consent</h2>
-            <p class="text-body text-muted mb-6">
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">6. Minor & Guardian Consent</h2>
+            <p class="text-body text-muted mb-6" style="line-height: 1.7;">
               As SCIFINITY caters to secondary (SSC) and higher-secondary (HSC) learners, applications submitted by minor candidates are accepted on the condition that the candidate has obtained explicit consent from their parent or legal guardian. Guardians retain the right to review any information stored about their student.
             </p>
 
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">7. Data Retention Policy</h2>
-            <p class="text-body text-muted mb-6">
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">7. Data Retention Policy</h2>
+            <p class="text-body text-muted mb-6" style="line-height: 1.7;">
               Student records are retained for the duration of the enrolled academic program and for an appropriate post-course evaluation period. Prospective applicant records that do not lead to enrollment are archived or purged in accordance with our administrative guidelines.
             </p>
 
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">8. Your Rights & Access Requests</h2>
-            <p class="text-body text-muted mb-6">
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">8. Your Rights & Access Requests</h2>
+            <p class="text-body text-muted mb-6" style="line-height: 1.7;">
               Students and guardians may request access to, correction of, or deletion of their submitted personal information by contacting our administrative team at the coordinates listed below.
             </p>
 
-            <h2 class="text-h3 mb-3" style="font-size: 22px;">9. Official Contact Details</h2>
+            <h2 class="text-h3 mb-3" style="font-size: 22px; color: var(--color-ink);">9. Official Contact Details</h2>
             <div class="p-4" style="background: var(--color-surface-muted); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
-              <p class="text-body mb-2"><strong>SCIFINITY Educational Administration</strong></p>
-              <p class="text-small text-muted mb-1"><strong>Official Email:</strong> <a href="mailto:${contact.email}" style="color: var(--color-primary);">${contact.email}</a></p>
-              <p class="text-small text-muted mb-1"><strong>Official Telephone:</strong> <a href="tel:${contact.phone}" style="color: var(--color-primary);">${contact.phone}</a></p>
-              <p class="text-small text-muted mb-1"><strong>WhatsApp:</strong> <a href="https://wa.me/88${contact.whatsapp.replace(/\D/g, '')}" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary);">${contact.whatsapp}</a></p>
+              <p class="text-body mb-2" style="color: var(--color-ink);"><strong>SCIFINITY Educational Administration</strong></p>
+              <p class="text-small text-muted mb-1"><strong>Official Email:</strong> <a href="mailto:${contact.email}" style="color: var(--color-primary); font-weight: 600;">${contact.email}</a></p>
+              <p class="text-small text-muted mb-1"><strong>Official Telephone:</strong> <a href="tel:${contact.phone}" style="color: var(--color-primary); font-weight: 600;">${contact.phone}</a></p>
+              <p class="text-small text-muted mb-1"><strong>WhatsApp:</strong> <a href="https://wa.me/88${contact.whatsapp.replace(/\D/g, '')}" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); font-weight: 600;">${contact.whatsapp}</a></p>
               <p class="text-small text-muted"><strong>Official Address:</strong> ${location.fullLocation}</p>
             </div>
 

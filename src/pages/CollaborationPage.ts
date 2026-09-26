@@ -133,15 +133,15 @@ export function renderCollaborationPage(): string {
       <!-- ================================================================= -->
       <!-- SECTION 1: SCIFINITY ACADEMIC COLLABORATION (ORIGINAL / UNCHANGED) -->
       <!-- ================================================================= -->
-      <section class="section section-hero">
+      <section class="section section-hero section-atmosphere-collab">
         <div class="container container-narrow text-center">
           <span class="text-label mb-3" style="display: inline-block;">
             ${isBn ? 'একাডেমিক অংশীদারিত্ব' : 'ACADEMIC PARTNERSHIP & SYNERGY'}
           </span>
           <h1 class="text-h1 display-title mb-4" style="color: var(--color-ink);">
-            ${isBn ? 'সহযোগিতা ও যৌথ উদ্যোগ' : 'Academic Collaboration'}
+            ${isBn ? 'सहযোগিতা ও যৌথ উদ্যোগ' : 'Academic Collaboration'}
           </h1>
-          <p class="text-lead max-w-prose mx-auto" style="font-size: 18px; line-height: 1.65;">
+          <p class="text-lead max-w-prose mx-auto" style="font-size: 18px; line-height: 1.65; color: var(--color-text-secondary);">
             ${isBn 
               ? 'অভিভাবক, শিক্ষা প্রতিষ্ঠান এবং নিবেদিত শিক্ষার্থীদের সাথে যৌথ অংশীদারিত্বের মাধ্যমে একটি গঠনমূলক শিক্ষামূলক পরিবেশ গড়ে তোলা।' 
               : 'Fostering academic synergy between educators, institutions, guardians, and passionate learners to elevate analytical education.'}
@@ -157,7 +157,7 @@ export function renderCollaborationPage(): string {
             <h2 class="text-h2 mt-2 mb-3">
               ${isBn ? 'আমরা যেভাবে একসাথে কাজ করি' : 'How We Work Together'}
             </h2>
-            <p class="text-lead" style="font-size: 16px;">
+            <p class="text-lead text-muted" style="font-size: 16px;">
               ${isBn 
                 ? 'শিক্ষার মানোন্নয়ন ও শিক্ষার্থীদের দীর্ঘমেয়াদী সফলতার জন্য সমন্বিত প্রচেষ্টা।' 
                 : 'Targeted initiatives designed to nurture deep understanding, mentorship, and educational access.'}
@@ -166,16 +166,19 @@ export function renderCollaborationPage(): string {
 
           <div class="grid grid-3 gap-6">
             <!-- Pathway 1: Guardian Partnership -->
-            <div class="card card-interactive" style="border-top: 4px solid var(--color-primary);">
-              <h3 class="text-h4 mb-2" style="color: var(--color-primary); font-size: 20px;">
-                ${isBn ? 'অভিভাবক অংশীদারিত্ব' : 'Guardian Partnership'}
-              </h3>
-              <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.6;">
-                ${isBn 
-                  ? 'শিক্ষার্থীর অগ্রগতি, মানসিক প্রস্তুতি এবং দুর্বলতা চিহ্নিতকরণে অভিভাবকের সাথে সরাসরি ও নিয়মিত যোগাযোগ।' 
-                  : 'Transparent, regular academic debugging and continuous dialogue with parents to nurture the student’s confidence and discipline.'}
-              </p>
-              <div class="mt-auto">
+            <div class="card card-interactive" style="padding: var(--space-6); border-top: 4px solid var(--color-primary); display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <span class="text-label" style="font-size: 11px; margin-bottom: 4px; display: block;">PATHWAY 01</span>
+                <h3 class="text-h4 mb-2" style="color: var(--color-primary); font-size: 20px;">
+                  ${isBn ? 'অভিভাবক অংশীদারিত্ব' : 'Guardian Partnership'}
+                </h3>
+                <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                  ${isBn 
+                    ? 'শিক্ষার্থীর অগ্রগতি, মানসিক প্রস্তুতি এবং দুর্বলতা চিহ্নিতকরণে অভিভাবকের সাথে সরাসরি ও নিয়মিত যোগাযোগ।' 
+                    : 'Transparent, regular academic debugging and continuous dialogue with parents to nurture the student’s confidence and discipline.'}
+                </p>
+              </div>
+              <div class="mt-auto pt-3" style="border-top: 1px solid var(--color-border-subtle);">
                 <a href="/admission?type=consultation" class="text-small" style="font-weight: 700; color: var(--color-primary);">
                   ${isBn ? 'কাউন্সেলিং বুক করুন &rarr;' : 'Book Consultation &rarr;'}
                 </a>
@@ -183,16 +186,19 @@ export function renderCollaborationPage(): string {
             </div>
 
             <!-- Pathway 2: Institutional Outreach -->
-            <div class="card card-interactive" style="border-top: 4px solid #6366F1;">
-              <h3 class="text-h4 mb-2" style="color: #6366F1; font-size: 20px;">
-                ${isBn ? 'প্রতিষ্ঠান ও একাডেমিক আউটরিচ' : 'Institutional Outreach'}
-              </h3>
-              <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.6;">
-                ${isBn 
-                  ? 'বিজ্ঞান ও গণিতের মৌলিক ধারণার উপর সেমিনার, সমস্যা সমাধান কর্মশালা এবং একাডেমিক এক্সচেঞ্জ।' 
-                  : 'Specialized problem-solving workshops, first-principles science seminars, and pedagogical exchanges for educational institutions.'}
-              </p>
-              <div class="mt-auto">
+            <div class="card card-interactive" style="padding: var(--space-6); border-top: 4px solid #6366F1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <span class="text-label" style="font-size: 11px; margin-bottom: 4px; display: block; color: #6366F1;">PATHWAY 02</span>
+                <h3 class="text-h4 mb-2" style="color: #6366F1; font-size: 20px;">
+                  ${isBn ? 'প্রতিষ্ঠান ও একাডেমিক আউটরিচ' : 'Institutional Outreach'}
+                </h3>
+                <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                  ${isBn 
+                    ? 'বিজ্ঞান ও গণিতের মৌলিক ধারণার উপর সেমিনার, সমস্যা সমাধান কর্মশালা এবং একাডেমিক এক্সচেঞ্জ।' 
+                    : 'Specialized problem-solving workshops, first-principles science seminars, and pedagogical exchanges for educational institutions.'}
+                </p>
+              </div>
+              <div class="mt-auto pt-3" style="border-top: 1px solid var(--color-border-subtle);">
                 <a href="mailto:${scifinityContact.email}?subject=Institutional%20Collaboration%20Inquiry" class="text-small" style="font-weight: 700; color: #6366F1;">
                   ${isBn ? 'প্রস্তাব পাঠান &rarr;' : 'Send Proposal &rarr;'}
                 </a>
@@ -200,16 +206,19 @@ export function renderCollaborationPage(): string {
             </div>
 
             <!-- Pathway 3: Peer Mentorship & Golden Seat -->
-            <div class="card card-interactive" style="border-top: 4px solid var(--color-gold);">
-              <h3 class="text-h4 mb-2" style="color: #92400E; font-size: 20px;">
-                ${isBn ? 'সহপাঠী মনোনয়ন ও স্কলারশিপ' : 'Peer Nomination & Access'}
-              </h3>
-              <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.6;">
-                ${isBn 
-                  ? 'মেধাবী ও আগ্রহী কিন্তু আর্থিক অসচ্ছল শিক্ষার্থীদের দ্য গোল্ডেন সিটের জন্য সহপাঠী বা শিক্ষকদের মনোনয়ন।' 
-                  : 'Empowering teachers and peers to nominate hardworking, financially constrained students for 100% tuition coverage under The Golden Seat.'}
-              </p>
-              <div class="mt-auto">
+            <div class="card card-interactive" style="padding: var(--space-6); border-top: 4px solid var(--color-gold); display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <span class="text-label" style="font-size: 11px; margin-bottom: 4px; display: block; color: var(--color-gold-dark);">PATHWAY 03</span>
+                <h3 class="text-h4 mb-2" style="color: #92400E; font-size: 20px;">
+                  ${isBn ? 'সহপাঠী মনোনয়ন ও স্কলারশিপ' : 'Peer Nomination & Access'}
+                </h3>
+                <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                  ${isBn 
+                    ? 'মেধাবী ও আগ্রহী কিন্তু আর্থিক অসচ্ছল শিক্ষার্থীদের দ্য গোল্ডেন সিটের জন্য সহপাঠী বা শিক্ষকদের মনোনয়ন।' 
+                    : 'Empowering teachers and peers to nominate hardworking, financially constrained students for 100% tuition coverage under The Golden Seat.'}
+                </p>
+              </div>
+              <div class="mt-auto pt-3" style="border-top: 1px solid var(--color-border-subtle);">
                 <a href="/golden-seat" class="text-small" style="font-weight: 700; color: #92400E;">
                   ${isBn ? 'মনোনয়ন পদ্ধতি দেখুন &rarr;' : 'View Nomination &rarr;'}
                 </a>
@@ -225,7 +234,7 @@ export function renderCollaborationPage(): string {
       <section class="section section-surface" id="adyanta">
         <div class="container">
           <!-- Adyanta Header & Narrative Card -->
-          <div class="card mb-8" style="padding: var(--space-7); background: #FFFFFF; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+          <div class="card card-elevated mb-8" style="padding: var(--space-8); background: #FFFFFF;">
             <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
               <span class="text-label" style="color: var(--color-primary); font-size: 12px; letter-spacing: 0.08em;">
                 PUBLISHING COLLABORATION
@@ -239,11 +248,11 @@ export function renderCollaborationPage(): string {
             </p>
 
             <!-- Primary Taglines -->
-            <div class="p-4 mb-5" style="background: #F8FAFC; border-left: 4px solid var(--color-primary); border-radius: var(--radius-sm);">
+            <div class="p-4 mb-5" style="background: var(--color-surface-muted); border-left: 4px solid var(--color-primary); border-radius: var(--radius-sm);">
               <p style="font-size: 18px; font-weight: 700; color: var(--color-ink); margin-bottom: 2px;">
                 কৌতূহল থেকে জ্ঞানের পথে।
               </p>
-              <p style="font-size: 15px; color: var(--color-text-muted); font-style: italic;">
+              <p style="font-size: 15px; color: var(--color-text-muted); font-style: italic; margin: 0;">
                 From Curiosity to Knowledge.
               </p>
             </div>
@@ -280,7 +289,7 @@ export function renderCollaborationPage(): string {
 
             <div class="grid grid-4 gap-4">
               ${adyantaProducts.map(p => `
-                <div class="card" style="padding: var(--space-5); background: #FFFFFF; border: 1px solid var(--color-border); display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="card card-interactive" style="padding: var(--space-5); display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <h4 class="text-h4 mb-2" style="font-size: 18px; color: var(--color-primary);">${p.title}</h4>
                     <p class="text-body text-muted" style="font-size: 14px; line-height: 1.55;">${isBn ? p.descBn : p.desc}</p>
@@ -293,7 +302,7 @@ export function renderCollaborationPage(): string {
           <!-- Adyanta Distribution, Location, Contact & QR Hub -->
           <div class="grid grid-2 gap-6 items-stretch">
             <!-- Left Card: Distribution, Location & Contact -->
-            <div class="card" style="padding: var(--space-6); background: #FFFFFF; border: 1px solid var(--color-border); display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="card card-elevated" style="padding: var(--space-6); background: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between;">
               <div>
                 <!-- Availability / Distribution -->
                 <div class="mb-5">
@@ -301,7 +310,7 @@ export function renderCollaborationPage(): string {
                   <p class="text-body" style="font-weight: 600; font-size: 15.5px; color: var(--color-ink); margin-bottom: 4px;">
                     Available through stationery shops and libraries.
                   </p>
-                  <p class="text-small" style="color: var(--color-primary); font-weight: 600;">
+                  <p class="text-small" style="color: var(--color-primary); font-weight: 600; margin: 0;">
                     আজই সংগ্রহ করুন—আপনার নিকটস্থ স্টেশনারি ও লাইব্রেরি থেকে।
                   </p>
                 </div>
@@ -309,7 +318,7 @@ export function renderCollaborationPage(): string {
                 <!-- Location -->
                 <div class="mb-5 pt-4" style="border-top: 1px solid var(--color-border-subtle);">
                   <span class="text-label mb-1" style="display: block; font-size: 11px;">LOCATION</span>
-                  <p class="text-body" style="font-weight: 600; color: var(--color-ink);">
+                  <p class="text-body" style="font-weight: 600; color: var(--color-ink); margin: 0;">
                     📍 Banglabazar, Dhaka
                   </p>
                 </div>
@@ -318,7 +327,7 @@ export function renderCollaborationPage(): string {
               <!-- Adyanta Contact Details -->
               <div class="pt-4" style="border-top: 1px solid var(--color-border);">
                 <span class="text-label mb-2" style="display: block; font-size: 11px;">ADYANTA CONTACT</span>
-                <ul class="flex flex-col gap-2">
+                <ul class="flex flex-col gap-2" style="list-style: none; padding: 0; margin: 0;">
                   <li>
                     <a href="tel:01512392682" class="footer-link flex items-center gap-2" style="color: var(--color-ink); font-weight: 600; font-size: 14.5px; white-space: nowrap;">
                       <span aria-hidden="true">📞</span>
@@ -342,12 +351,12 @@ export function renderCollaborationPage(): string {
             </div>
 
             <!-- Right Card: Adyanta QR & Social Hub -->
-            <div class="card" style="padding: var(--space-6); background: #FFFFFF; border: 1px solid var(--color-border); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="card card-elevated" style="padding: var(--space-6); background: #FFFFFF; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
               <span class="text-label mb-3" style="display: block; font-size: 12px; letter-spacing: 0.06em;">
                 CONNECT WITH ADYANTA
               </span>
 
-              <div class="p-3 mb-3" style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-sm); display: inline-block; box-shadow: var(--shadow-xs);">
+              <div class="p-3 mb-3" style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-md); display: inline-block; box-shadow: var(--shadow-lvl2);">
                 <img 
                   src="${adyantaQrUrl}" 
                   alt="Connect with Adyanta QR Code" 
@@ -355,7 +364,7 @@ export function renderCollaborationPage(): string {
                 />
               </div>
 
-              <p class="text-small text-muted" style="max-width: 260px; line-height: 1.4;">
+              <p class="text-small text-muted" style="max-width: 260px; line-height: 1.4; margin: 0;">
                 Scan to access Adyanta's official social hub, book catalogue &amp; product availability.
               </p>
             </div>
@@ -369,7 +378,7 @@ export function renderCollaborationPage(): string {
       <section class="section" id="student-collaboration">
         <div class="container">
           <!-- Header Banner -->
-          <div class="card mb-8" style="padding: var(--space-7); background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%); border: 1px solid var(--color-border);">
+          <div class="card card-elevated mb-8" style="padding: var(--space-8); background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);">
             <div class="max-w-prose">
               <span class="text-label mb-2" style="display: inline-block; color: var(--color-primary);">
                 STUDENT COLLABORATION WITH ADYANTA
@@ -400,7 +409,7 @@ export function renderCollaborationPage(): string {
                 <div class="card card-interactive flex flex-col justify-between" style="padding: var(--space-5);">
                   <div>
                     <h4 class="text-h4 mb-2" style="font-size: 18px; color: var(--color-ink);">${isBn ? r.roleBn : r.role}</h4>
-                    <p class="text-body text-muted" style="font-size: 14px; line-height: 1.55;">
+                    <p class="text-body text-muted" style="font-size: 14px; line-height: 1.55; margin: 0;">
                       ${isBn ? r.descBn : r.desc}
                     </p>
                   </div>
@@ -409,10 +418,10 @@ export function renderCollaborationPage(): string {
             </div>
 
             <!-- Other Creative Roles Card -->
-            <div class="card" style="padding: var(--space-5); background: #F8FAFC; border: 1px dashed var(--color-border);">
+            <div class="card card-interactive" style="padding: var(--space-5); background: #F8FAFC; border: 1.5px dashed var(--color-border);">
               <div class="flex items-center gap-2 mb-2">
                 <span class="badge badge-accent">Flexible Opportunity</span>
-                <h4 class="text-h4" style="font-size: 17px; color: var(--color-ink);">Other Creative Roles</h4>
+                <h4 class="text-h4" style="font-size: 17px; color: var(--color-ink); margin: 0;">Other Creative Roles</h4>
               </div>
               <p class="text-small text-muted" style="line-height: 1.6; margin: 0;">
                 Depending on Adyanta's needs, students may also participate in other roles that align with their skills and the values of the collaboration. Roles adapt flexibly according to ongoing publishing and creative requirements.
@@ -421,7 +430,7 @@ export function renderCollaborationPage(): string {
           </div>
 
           <!-- Paid Student Collaboration Callout Card -->
-          <div class="card card-gold mb-8" style="padding: var(--space-7);">
+          <div class="card card-gold card-elevated mb-8" style="padding: var(--space-7);">
             <div class="flex items-center gap-2 mb-2">
               <span class="badge badge-gold">COMPENSATION &amp; VALUE</span>
             </div>
@@ -431,7 +440,7 @@ export function renderCollaborationPage(): string {
             <p class="text-lead" style="font-size: 16.5px; line-height: 1.65; color: #451A03; margin-bottom: var(--space-2);">
               Selected students will receive reasonable compensation for approved collaborative work.
             </p>
-            <p class="text-small text-muted" style="color: #78350F; line-height: 1.6; margin: 0;">
+            <p class="text-small" style="color: #78350F; line-height: 1.6; margin: 0;">
               This is not simply an unpaid extracurricular activity. Students can contribute to meaningful creative and promotional work while receiving reasonable payment for approved assignments. (Assignments, scope, and compensation depend on project approval and specific milestone deliverables).
             </p>
           </div>
@@ -445,11 +454,11 @@ export function renderCollaborationPage(): string {
 
             <div class="grid grid-4 gap-4">
               ${studentBenefits.map((b, idx) => `
-                <div class="card flex flex-col justify-between" style="padding: var(--space-5); border-top: 3px solid var(--color-primary);">
+                <div class="card card-interactive flex flex-col justify-between" style="padding: var(--space-5); border-top: 3px solid var(--color-primary);">
                   <div>
                     <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 4px;">CARD 0${idx + 1}</span>
                     <h4 class="text-h4 mb-2" style="font-size: 17px; color: var(--color-ink);">${isBn ? b.titleBn : b.title}</h4>
-                    <p class="text-body text-muted" style="font-size: 14px; line-height: 1.55;">
+                    <p class="text-body text-muted" style="font-size: 14px; line-height: 1.55; margin: 0;">
                       ${isBn ? b.descBn : b.desc}
                     </p>
                   </div>
@@ -459,7 +468,7 @@ export function renderCollaborationPage(): string {
           </div>
 
           <!-- Message for Guardians Section -->
-          <div class="card mb-8" style="padding: var(--space-7); background: #F0FDF4; border: 1px solid #BBF7D0;">
+          <div class="card card-elevated mb-8" style="padding: var(--space-8); background: linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 100%); border: 1.5px solid #86EFAC;">
             <span class="text-label mb-2" style="display: inline-block; color: #15803D;">MESSAGE FOR GUARDIANS</span>
             <h3 class="text-h2 mb-3" style="font-size: 26px; color: #14532D;">
               LET YOUR CHILD LEARN BEYOND THE CLASSROOM.
@@ -482,10 +491,10 @@ export function renderCollaborationPage(): string {
 
             <div class="grid grid-5 gap-3">
               ${workflowSteps.map(s => `
-                <div class="card" style="padding: var(--space-4); text-align: center; background: #FFFFFF;">
+                <div class="card card-interactive" style="padding: var(--space-5); text-align: center; background: #FFFFFF;">
                   <span class="badge badge-primary mb-2" style="font-size: 11px; padding: 2px 8px;">STEP ${s.step}</span>
                   <h4 class="text-h4 mb-1" style="font-size: 16px; color: var(--color-ink);">${isBn ? s.titleBn : s.title}</h4>
-                  <p class="text-small text-muted" style="font-size: 13px; line-height: 1.45;">
+                  <p class="text-small text-muted" style="font-size: 13px; line-height: 1.45; margin: 0;">
                     ${isBn ? s.descBn : s.desc}
                   </p>
                 </div>
@@ -494,9 +503,9 @@ export function renderCollaborationPage(): string {
           </div>
 
           <!-- Eligibility & Call to Action -->
-          <div class="card" style="padding: var(--space-6); background: #FFFFFF; border: 1px solid var(--color-border); text-align: center;">
+          <div class="card card-elevated" style="padding: var(--space-7); background: #FFFFFF; text-align: center;">
             <h3 class="text-h3 mb-2" style="font-size: 22px;">Ready to Explore Student Creative Collaboration?</h3>
-            <p class="text-body text-muted mb-4 max-w-prose mx-auto" style="font-size: 15px;">
+            <p class="text-body text-muted mb-5 max-w-prose mx-auto" style="font-size: 15px; line-height: 1.6;">
               Tell us about your interests, writing skills, presentation abilities, or creative ideas. Anyone can apply, with priority given to enrolled SCIFINITY students.
             </p>
             <div class="flex gap-4 justify-center flex-wrap">

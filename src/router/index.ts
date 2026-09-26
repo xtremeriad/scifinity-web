@@ -247,6 +247,22 @@ export class Router {
       });
     });
 
+    // Scroll reveal observer
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+      document.querySelectorAll('.reveal-init').forEach(el => {
+        revealObserver.observe(el);
+      });
+    }
+
     // Vault Filter buttons
     const filterBtns = document.querySelectorAll('.vault-filter-btn');
     filterBtns.forEach(btn => {

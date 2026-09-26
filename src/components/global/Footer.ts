@@ -1,7 +1,7 @@
 /* ==========================================================================
    FOOTER COMPONENT
    Source: 15_GLOBAL_SHELL_COMPONENTS_AND_DESIGN.md
-   Baseline footer structure with official QR code, WhatsApp, and Collaboration.
+   SCIFINITY Design System V2.0 — Modern Tech Ecosystem Footer
    ========================================================================== */
 
 import { SITE_CONFIG } from '../../content/site-config.ts';
@@ -21,22 +21,22 @@ export function renderFooter(): string {
           <!-- Identity Column with Social QR -->
           <div>
             <div class="flex items-center gap-3 mb-4">
-              <div class="brand-symbol" style="background: #2563EB; color: #FFFFFF;" aria-hidden="true">S</div>
+              <div class="brand-symbol" style="background: var(--color-navy); color: #FFFFFF; box-shadow: 0 4px 12px rgba(22, 54, 107, 0.4);" aria-hidden="true">S</div>
               <span class="brand-text" style="color: #FFFFFF;">${SITE_CONFIG.brandName}</span>
             </div>
-            <p class="text-small" style="color: #94A3B8; margin-bottom: var(--space-4); max-width: 320px;">
+            <p class="text-small" style="color: #94A3B8; margin-bottom: var(--space-4); max-width: 320px; line-height: 1.6;">
               ${isBn ? 'এসএসসি, এইচএসসি এবং অ্যাডমিশন টেস্ট শিক্ষার্থীদের জন্য একটি মেন্টর-পরিচালিত শিক্ষামূলক ইকোসিস্টেম।' : 'A mentor-led educational ecosystem for SSC, HSC and Admission Test students—built to make learning meaningful, analytical and engaging.'}
             </p>
             
-            <!-- Prominent QR Connect Hub -->
+            <!-- Prominent QR Connect Hub (3D Physical Floating Card) -->
             <div style="margin-top: var(--space-3); margin-bottom: var(--space-2);">
-              <div style="background: #FFFFFF; padding: 10px; border-radius: var(--radius-sm); display: inline-block; box-shadow: var(--shadow-xs); text-align: center;">
+              <div style="background: #FFFFFF; padding: 12px; border-radius: var(--radius-md); display: inline-block; box-shadow: var(--shadow-lvl2); text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);">
                 <img 
                   src="${qrCodeUrl}" 
                   alt="Connect with SCIFINITY QR Code" 
-                  style="width: 136px; height: 136px; object-fit: contain; background: #FFFFFF; display: block; margin: 0 auto;" 
+                  style="width: 136px; height: 136px; object-fit: contain; background: #FFFFFF; display: block; margin: 0 auto; border-radius: 4px;" 
                 />
-                <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-primary); display: block; margin-top: 6px;">
+                <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-navy); display: block; margin-top: 8px;">
                   ${isBn ? 'সংযুক্ত থাকুন' : 'Connect With Us'}
                 </span>
               </div>

@@ -11,17 +11,17 @@ export function renderAdmissionForm(): string {
   const isConfigured = SCIFINITY_OWNER_DATA.api.isConfigured;
 
   return `
-    <div class="card" style="padding: var(--space-8); box-shadow: var(--shadow-md); background: #FFFFFF; border: 1px solid var(--color-border);" id="admissionFormContainer">
+    <div class="card card-elevated" style="padding: var(--space-8); background: #FFFFFF;" id="admissionFormContainer">
       <div class="mb-6">
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
           <span class="badge badge-primary">Admission Application</span>
           ${isConfigured 
             ? '<span class="status-tag confirmed">API LIVE</span>' 
             : '<span class="status-tag placeholder" title="Submission endpoint pending owner backend configuration">[SUBMISSION ENDPOINT PENDING]</span>'
           }
         </div>
-        <h3 class="text-h3" style="font-size: 24px; margin-top: 8px;">Apply for SCIFINITY Batch Placement</h3>
-        <p class="text-body text-muted" style="font-size: 15px;">
+        <h3 class="text-h3" style="font-size: 24px; color: var(--color-ink); margin-top: 4px; margin-bottom: 6px;">Apply for SCIFINITY Batch Placement</h3>
+        <p class="text-body text-muted" style="font-size: 14.5px; line-height: 1.6;">
           Small batches of 15 students ensure rigorous, personalized mentorship. Please complete all fields with sincerity.
         </p>
       </div>
@@ -60,16 +60,16 @@ export function renderAdmissionForm(): string {
             Target Subjects of Focus <span class="required-indicator">*</span>
           </label>
           <div class="grid grid-2 gap-2 mt-1">
-            <label class="flex items-center gap-2" style="font-size: 15px; cursor: pointer;">
+            <label class="flex items-center gap-2" style="font-size: 14.5px; cursor: pointer; color: var(--color-ink);">
               <input type="checkbox" name="targetSubjects" value="Higher Mathematics" checked> Higher Mathematics
             </label>
-            <label class="flex items-center gap-2" style="font-size: 15px; cursor: pointer;">
+            <label class="flex items-center gap-2" style="font-size: 14.5px; cursor: pointer; color: var(--color-ink);">
               <input type="checkbox" name="targetSubjects" value="Physics" checked> Physics
             </label>
-            <label class="flex items-center gap-2" style="font-size: 15px; cursor: pointer;">
+            <label class="flex items-center gap-2" style="font-size: 14.5px; cursor: pointer; color: var(--color-ink);">
               <input type="checkbox" name="targetSubjects" value="Chemistry" checked> Chemistry
             </label>
-            <label class="flex items-center gap-2" style="font-size: 15px; cursor: pointer;">
+            <label class="flex items-center gap-2" style="font-size: 14.5px; cursor: pointer; color: var(--color-ink);">
               <input type="checkbox" name="targetSubjects" value="General Mathematics"> General Mathematics (SSC only)
             </label>
           </div>
@@ -122,8 +122,8 @@ export function renderAdmissionForm(): string {
 
         <!-- Reason for Applying -->
         <div class="form-group">
-          <div class="flex items-center justify-between">
-            <label for="reasonForApplying" class="form-label">
+          <div class="flex items-center justify-between mb-1">
+            <label for="reasonForApplying" class="form-label" style="margin-bottom: 0;">
               Why do you want to study at SCIFINITY? <span class="required-indicator">*</span>
             </label>
             <span class="text-small text-muted" id="charCount">0 / 250 min</span>
@@ -134,9 +134,9 @@ export function renderAdmissionForm(): string {
         </div>
 
         <!-- Technical Endpoint Status Notice Box -->
-        <div class="p-3 mb-6" style="background: var(--color-surface-muted); border: 1px dashed var(--color-border); border-radius: var(--radius-sm); font-size: 13px; color: var(--color-text-muted);">
+        <div class="p-4 mb-6" style="background: var(--color-surface-muted); border: 1.5px dashed var(--color-border); border-radius: var(--radius-sm); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">
           <strong>Submission Endpoint:</strong> ${isConfigured ? 'Connected to live production endpoint.' : '<span class="status-tag placeholder">[PENDING OWNER BACKEND ENDPOINT CONFIGURATION]</span>'}
-          <p class="text-small text-muted mt-1">Form inputs are strictly validated on client and prepared for webhook/API integration.</p>
+          <p class="text-small text-muted mt-1" style="margin: 0;">Form inputs are strictly validated on client and prepared for webhook/API integration.</p>
         </div>
 
         <button type="submit" class="btn btn-primary btn-lg w-full" id="submitBtn">
@@ -150,17 +150,17 @@ export function renderAdmissionForm(): string {
         <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--color-success-bg); color: var(--color-success); display: inline-flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: var(--space-4);">
           ✓
         </div>
-        <h3 class="text-h3" style="font-size: 22px; margin-bottom: 8px;">Application Validation Complete</h3>
+        <h3 class="text-h3" style="font-size: 22px; margin-bottom: 8px; color: var(--color-ink);">Application Validation Complete</h3>
         <p class="text-body text-muted mb-4" id="successApplicantText">
           Thank you. Your application details have been validated.
         </p>
 
-        <div class="p-3 mb-6" style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); font-size: 13px; color: #166534; text-align: left; max-width: 480px; margin-left: auto; margin-right: auto;">
+        <div class="p-4 mb-6" style="background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: var(--radius-sm); font-size: 13px; color: #166534; text-align: left; max-width: 480px; margin-left: auto; margin-right: auto;">
           <div class="flex items-center justify-between mb-1">
             <strong>Application Reference:</strong>
             <code id="successRefCode" style="font-weight: 700; background: #DCFCE7; padding: 2px 6px; border-radius: 4px;">SCF-DEMO</code>
           </div>
-          <p class="text-small" style="margin-top: 4px; color: #15803D;" id="successModeNotice">
+          <p class="text-small" style="margin-top: 4px; color: #15803D; margin-bottom: 0;" id="successModeNotice">
             <strong>System Status:</strong> ${isConfigured ? 'Application submitted to live admissions server.' : 'Validated in test prototype mode. Live submission endpoint will be activated once owner configures the backend destination.'}
           </p>
         </div>
