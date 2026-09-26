@@ -20,6 +20,8 @@ import { renderGoldenSeatPage } from '../pages/GoldenSeatPage.ts';
 import { renderVaultPage } from '../pages/VaultPage.ts';
 import { renderLocationsPage } from '../pages/LocationsPage.ts';
 import { renderAdmissionPage } from '../pages/AdmissionPage.ts';
+import { renderCollaborationPage } from '../pages/CollaborationPage.ts';
+import { renderConnectPage } from '../pages/ConnectPage.ts';
 import { renderPrivacyPage } from '../pages/PrivacyPage.ts';
 import { renderTermsPage } from '../pages/TermsPage.ts';
 
@@ -54,6 +56,16 @@ const ROUTE_MAP: Record<string, RouteDefinition> = {
     title: 'Academic Programs — SSC, HSC & Admission Test',
     description: 'Structured small-batch preparation (max 15 students) in General Mathematics, Higher Mathematics, Physics, and Chemistry.',
     render: renderProgramsPage
+  },
+  '/collaboration': {
+    title: 'Collaboration — Academic & Institutional Partnerships',
+    description: 'Fostering academic synergy between educators, institutions, guardians, and passionate learners.',
+    render: renderCollaborationPage
+  },
+  '/connect': {
+    title: 'SCIFINITY Connect — Student & Guardian Consultation',
+    description: 'A private consultation opportunity for students and guardians to discuss academic challenges, motivation, and study guidance with a mentor.',
+    render: renderConnectPage
   },
   '/programs/ssc': {
     title: 'SSC Program (Classes 9–10) — SCIFINITY',
@@ -289,6 +301,8 @@ export class Router {
         reasonTextarea.placeholder = 'Please explain your financial context and personal passion for learning (Golden Seat Application)...';
       } else if (typeParam === 'nomination' && reasonTextarea) {
         reasonTextarea.placeholder = 'Please specify the name of the peer you are nominating, why they deserve the Golden Seat, and their academic diligence...';
+      } else if (typeParam === 'consultation' && reasonTextarea) {
+        reasonTextarea.placeholder = 'Please describe the topics, study issues, or academic guidance you would like to discuss in your 30-minute consultation (Students & Parents/Guardians welcome)...';
       }
 
       const reasonInput = document.getElementById('reasonForApplying') as HTMLTextAreaElement | null;

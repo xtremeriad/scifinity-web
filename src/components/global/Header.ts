@@ -1,5 +1,6 @@
 /* ==========================================================================
    HEADER & NAVIGATION COMPONENT
+   Official Brand System v1.0
    ========================================================================== */
 
 import { NAVIGATION_ITEMS } from '../../content/site-config.ts';
@@ -10,6 +11,7 @@ export function renderHeader(currentRoute: string): string {
   const isBn = store.language === 'bn';
   const logoUrl = SCIFINITY_OWNER_DATA.assets.logoPath;
 
+  // Primary navigation links shown in header
   const navLinksHtml = NAVIGATION_ITEMS.map(item => {
     const isActive = currentRoute === item.route || (item.route !== '/' && currentRoute.startsWith(item.route));
     const label = isBn ? item.labelBn : item.labelEn;
@@ -24,7 +26,7 @@ export function renderHeader(currentRoute: string): string {
     <header class="site-header" role="banner">
       <div class="container header-inner">
         <a href="/" class="brand-logo" data-route="/" aria-label="SCIFINITY Home">
-          <img src="${logoUrl}" alt="SCIFINITY — Where Ingenuity Meets Curiosity" style="height: 52px; width: auto; max-width: 170px; object-fit: contain; display: block;" />
+          <img src="${logoUrl}" alt="SCIFINITY — Where Ingenuity Meets Curiosity" class="brand-logo-img" />
         </a>
 
         <nav class="nav-desktop" role="navigation" aria-label="Main Navigation">
@@ -38,7 +40,7 @@ export function renderHeader(currentRoute: string): string {
           </div>
 
           <a href="/admission" class="btn btn-primary btn-sm" data-route="/admission">
-            ${isBn ? 'ভর্তি আবেদন' : 'Apply for Admission'}
+            ${isBn ? 'ভর্তি আবেদন' : 'Apply Now'}
           </a>
 
           <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation Menu" aria-expanded="false">

@@ -1,11 +1,10 @@
 /* ==========================================================================
    PAGE 12 — LOCATIONS VIEW CONTROLLER
    Source: 13_LOCATIONS.md
-   Updated with verified addresses and batch schedules.
+   Updated with verified addresses, batch schedules, narrative cards.
    ========================================================================== */
 
 import { LOCATIONS_CONTENT } from '../content/en/locations.ts';
-import { renderStatusBadge } from '../components/global/StatusBadge.ts';
 
 export function renderLocationsPage(): string {
   const c = LOCATIONS_CONTENT;
@@ -45,47 +44,64 @@ export function renderLocationsPage(): string {
         <div class="container">
           <div class="grid grid-2 gap-8">
             ${c.locationsList.map(loc => `
-              <div class="card" style="padding: var(--space-6);">
-                <div class="flex items-center justify-between mb-3">
-                  <div>
-                    <h3 class="text-h3" style="font-size: 24px;">${loc.name}</h3>
-                    <span class="text-small text-muted">${loc.city}</span>
-                  </div>
-                  <span class="status-tag confirmed">Confirmed Center</span>
-                </div>
-
-                <div class="flex flex-col gap-4 mt-4">
-                  <!-- Address Box -->
-                  <div class="p-3" style="background: var(--color-surface-muted); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
-                    <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 4px;">Official Location:</span>
-                    <span style="font-size: 16px; font-weight: 600; color: var(--color-ink);">${loc.addressRequired}</span>
+              <div class="card" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <!-- Campus Header -->
+                  <div class="flex items-center justify-between mb-4">
+                    <div>
+                      <h3 class="text-h3" style="font-size: 24px; margin-bottom: 2px;">${loc.name}</h3>
+                      <span class="text-small text-muted">${loc.city}</span>
+                    </div>
+                    <span class="status-tag confirmed">Confirmed Center</span>
                   </div>
 
-                  <!-- Days Schedule -->
-                  <div class="p-3" style="background: #F0FDF4; border-radius: var(--radius-sm); border: 1px solid #BBF7D0;">
-                    <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 2px; color: #166534;">Class Days:</span>
-                    <strong style="font-size: 15px; color: #15803D;">${loc.daysSchedule}</strong>
-                  </div>
+                  <div class="flex flex-col gap-4 mt-2">
+                    <!-- Official Location Box -->
+                    <div class="p-3" style="background: var(--color-surface-muted); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                      <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 4px;">Official Location:</span>
+                      <span style="font-size: 15.5px; font-weight: 600; color: var(--color-ink);">${loc.addressRequired}</span>
+                    </div>
 
-                  <!-- Batch Timings -->
-                  <div>
-                    <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 6px;">Daily Batch Timings:</span>
-                    <div class="grid grid-2 gap-2">
-                      ${loc.batches.map(b => `
-                        <div class="p-2" style="background: var(--color-surface-muted); border-radius: 4px; font-size: 13px; font-weight: 500;">
-                          ${b}
-                        </div>
-                      `).join('')}
+                    <!-- Class Days Schedule -->
+                    <div class="p-3" style="background: #F0FDF4; border-radius: var(--radius-sm); border: 1px solid #BBF7D0;">
+                      <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 2px; color: #166534;">Class Days:</span>
+                      <strong style="font-size: 15px; color: #15803D;">${loc.daysSchedule}</strong>
+                    </div>
+
+                    <!-- Daily Batch Timings -->
+                    <div>
+                      <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 6px;">Daily Batch Timings:</span>
+                      <div class="grid grid-2 gap-2">
+                        ${loc.batches.map(b => `
+                          <div class="p-2" style="background: var(--color-surface-muted); border-radius: 4px; font-size: 13px; font-weight: 500;">
+                            ${b}
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+
+                    <!-- The Story Card -->
+                    <div class="card" style="background: #F8FAFC; border: 1px solid var(--color-border); padding: var(--space-4); border-radius: var(--radius-sm);">
+                      <p class="text-body" style="font-size: 13.5px; line-height: 1.6; color: var(--color-text); margin: 0;">
+                        ${loc.story}
+                      </p>
+                    </div>
+
+                    <!-- The Environment Card -->
+                    <div class="card" style="background: #F8FAFC; border: 1px solid var(--color-border); padding: var(--space-4); border-radius: var(--radius-sm);">
+                      <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 6px; color: var(--color-primary);">THE ENVIRONMENT</span>
+                      <div style="display: flex; flex-direction: column; gap: 6px;">
+                        ${loc.environment.map(item => `
+                          <p class="text-body" style="font-size: 13.5px; line-height: 1.55; color: var(--color-text); margin: 0;">
+                            ${item}
+                          </p>
+                        `).join('')}
+                      </div>
                     </div>
                   </div>
-
-                  <!-- Facilities Notice -->
-                  <div class="p-3" style="background: var(--color-surface-muted); border-radius: var(--radius-sm); font-size: 12px; color: var(--color-text-muted);">
-                    <span class="text-label" style="font-size: 10px; display: block; margin-bottom: 2px;">Classroom Facility:</span>
-                    Strict 15-student semicircular seating with direct line-of-sight engagement.
-                  </div>
                 </div>
 
+                <!-- Application button -->
                 <div class="mt-6 pt-4" style="border-top: 1px solid var(--color-border);">
                   <a href="/admission?loc=${loc.id}" class="btn btn-primary btn-sm w-full" data-route="/admission">
                     Apply for ${loc.name} Placement &rarr;
@@ -111,22 +127,6 @@ export function renderLocationsPage(): string {
                 </div>
               `).join('')}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Map & Directions Placeholder -->
-      <section class="section section-surface">
-        <div class="container container-narrow">
-          <div class="card" style="padding: var(--space-8); border: 2px dashed var(--color-border); text-align: center; background: #F8FAFC;">
-            <div class="flex items-center justify-center gap-2 mb-3">
-              <span class="text-label">MAPS & DIRECTIONS</span>
-              ${renderStatusBadge(c.mapNotice.status)}
-            </div>
-            <h3 class="text-h3 mb-3" style="font-size: 20px;">Google Maps Integration</h3>
-            <p class="text-body text-muted max-w-prose mx-auto">
-              ${c.mapNotice.text}
-            </p>
           </div>
         </div>
       </section>

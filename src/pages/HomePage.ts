@@ -1,7 +1,7 @@
 /* ==========================================================================
    PAGE 01 — HOME VIEW CONTROLLER
    Source: 02_HOME.md
-   Updated with verified founder details, approved statement, and center addresses.
+   Baseline homepage structure, content hierarchy, and pedagogical components.
    ========================================================================== */
 
 import { HOME_CONTENT } from '../content/en/home.ts';
@@ -30,14 +30,14 @@ export function renderHomePage(): string {
       <!-- Section 01: Hero -->
       <section class="section section-hero">
         <div class="container">
-          <div class="max-w-prose mb-8">
+          <div class="hero-content-wrap mb-8">
             <span class="text-label mb-3" style="display: inline-block;">
               ${isBn ? 'শিক্ষামূলক ইকোসিস্টেম &bull; প্রতিষ্ঠাকাল ২০১৪' : 'EDUCATIONAL ECOSYSTEM &bull; EST. 2014'}
             </span>
-            <h1 class="text-h1 display-title mb-4">
+            <h1 class="text-h1 display-title hero-main-headline mb-4">
               ${isBn ? bn.home.heroHeadline : c.hero.headline}
             </h1>
-            <p class="text-lead mb-6">
+            <p class="text-lead hero-main-description mb-6">
               ${isBn ? bn.home.heroSupporting : c.hero.supporting}
             </p>
             <div class="flex gap-4 flex-wrap">
@@ -50,12 +50,12 @@ export function renderHomePage(): string {
             </div>
           </div>
 
-          <!-- Hero Pillars Grid -->
-          <div class="grid grid-4 gap-4 mt-8">
+          <!-- Hero Pillars Grid (5 Information Cards) -->
+          <div class="grid grid-5 gap-4 mt-8">
             ${c.hero.pillars.map(p => `
               <div class="card" style="padding: var(--space-4); background: #FFFFFF;">
                 <span class="text-label" style="font-size: 11px;">${p.label}</span>
-                <p class="text-body" style="font-weight: 600; font-size: 15px; margin-top: 4px;">${p.detail}</p>
+                <p class="text-body" style="font-weight: 600; font-size: 14.5px; margin-top: 4px;">${p.detail}</p>
               </div>
             `).join('')}
           </div>
@@ -147,18 +147,18 @@ export function renderHomePage(): string {
             </a>
           </div>
 
-          <div class="grid grid-3 gap-6">
+          <div class="grid grid-4 gap-6">
             ${c.programsSummary.programs.map(prog => `
               <div class="card card-interactive flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between mb-3">
                     <span class="badge badge-primary">${prog.classes}</span>
                   </div>
-                  <h3 class="text-h3" style="font-size: 22px; margin-bottom: 8px;">${prog.title}</h3>
-                  <p class="text-body text-muted mb-4" style="font-size: 15px;">${prog.summary}</p>
+                  <h3 class="text-h3" style="font-size: 21px; margin-bottom: 8px;">${prog.title}</h3>
+                  <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.55;">${prog.summary}</p>
                   
                   <div class="mb-6">
-                    <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 6px;">Subjects Included:</span>
+                    <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 6px;">${prog.id === 'final-sprint' ? 'Key Focus:' : 'Subjects Included:'}</span>
                     <ul class="flex flex-col gap-1">
                       ${prog.subjects.map(s => `<li class="text-small" style="color: var(--color-ink);">&bull; ${s}</li>`).join('')}
                     </ul>
@@ -166,7 +166,7 @@ export function renderHomePage(): string {
                 </div>
 
                 <a href="${prog.route}" class="btn btn-secondary btn-sm w-full" data-route="${prog.route}">
-                  Explore ${prog.title} &rarr;
+                  ${prog.id === 'final-sprint' ? 'Explore FINAL SPRINT &rarr;' : `Explore ${prog.title} &rarr;`}
                 </a>
               </div>
             `).join('')}
@@ -197,13 +197,12 @@ export function renderHomePage(): string {
               </p>
               
               <div class="card mb-6" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.15); padding: var(--space-6);">
-                <blockquote class="text-lead" style="font-style: italic; color: #F1F5F9; line-height: 1.7;">
-                  "${c.founderSummary.quote}"
+                <blockquote class="text-lead" style="font-style: italic; color: #F1F5F9; line-height: 1.7; margin: 0 0 var(--space-3) 0;">
+                  ${c.founderSummary.quote}
                 </blockquote>
-                <div class="flex items-center justify-between mt-4 pt-3 flex-wrap gap-2" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                  <span class="text-small" style="color: #94A3B8; font-weight: 600;">— ${c.founderSummary.name}, Founder & Mentor</span>
-                  <img src="/assets/founder-signature.png" alt="Signature of ${c.founderSummary.name}" style="height: 38px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.9;" />
-                </div>
+                <p class="text-small" style="color: #94A3B8; font-weight: 600; margin: 0;">
+                  — ${c.founderSummary.name}, Founder & Mentor
+                </p>
               </div>
 
               <a href="${c.founderSummary.cta.route}" class="btn btn-outline-white btn-sm" data-route="${c.founderSummary.cta.route}">
@@ -293,6 +292,59 @@ export function renderHomePage(): string {
             <div class="flex items-center gap-2">
               <span class="status-tag planned">[PLANNED]</span>
               <span class="text-small" style="color: #0369A1; font-weight: 500;">${c.vaultSummary.plannedFeature}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Collaboration Intro -->
+      <section class="section">
+        <div class="container container-narrow text-center">
+          <div class="card" style="padding: var(--space-7); background: #FFFFFF; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+            <span class="text-label mb-2" style="display: inline-block; color: var(--color-primary);">
+              ${c.collaborationIntro.eyebrow}
+            </span>
+            <h2 class="text-h2 mb-3" style="font-size: clamp(24px, 3.2vw, 32px); color: var(--color-ink);">
+              ${c.collaborationIntro.headline}
+            </h2>
+            <p class="text-lead mb-4" style="font-size: 18px; font-weight: 600; color: var(--color-primary); line-height: 1.5;">
+              ${c.collaborationIntro.supportingLine}
+            </p>
+            <p class="text-body max-w-prose mx-auto mb-6" style="font-size: 15.5px; line-height: 1.7; color: var(--color-text);">
+              ${c.collaborationIntro.description}
+            </p>
+            <div>
+              <a href="${c.collaborationIntro.cta.route}" class="btn btn-primary" data-route="${c.collaborationIntro.cta.route}">
+                ${c.collaborationIntro.cta.label} &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: SCIFINITY Connect Intro -->
+      <section class="section section-surface">
+        <div class="container container-narrow text-center">
+          <div class="card" style="padding: var(--space-7); background: #FFFFFF; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+            <span class="text-label mb-2" style="display: inline-block; color: var(--color-primary);">
+              ${c.connectIntro.eyebrow}
+            </span>
+            <h2 class="text-h2 mb-3" style="font-size: clamp(24px, 3.2vw, 32px); color: var(--color-ink);">
+              ${c.connectIntro.headline}
+            </h2>
+            <p class="text-lead mb-4" style="font-size: 18px; font-weight: 600; color: var(--color-primary); line-height: 1.5;">
+              ${c.connectIntro.supportingLine}
+            </p>
+            <p class="text-body max-w-prose mx-auto mb-4" style="font-size: 15.5px; line-height: 1.7; color: var(--color-text);">
+              ${c.connectIntro.body}
+            </p>
+            <p style="font-size: 17px; font-weight: 700; color: var(--color-ink); margin-bottom: var(--space-5);">
+              ${c.connectIntro.subtext}
+            </p>
+            <div>
+              <a href="${c.connectIntro.cta.route}" class="btn btn-primary" data-route="${c.connectIntro.cta.route}">
+                ${c.connectIntro.cta.label} &rarr;
+              </a>
             </div>
           </div>
         </div>

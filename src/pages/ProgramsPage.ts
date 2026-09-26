@@ -1,9 +1,10 @@
 /* ==========================================================================
    PAGE 04 — PROGRAMS INDEX VIEW CONTROLLER
    Source: 05_PROGRAMS.md
+   Updated with FINAL SPRINT Batch, exact batch timings, and campus schedules.
    ========================================================================== */
 
-import { PROGRAMS_INDEX_CONTENT, SSC_PROGRAM_CONTENT, HSC_PROGRAM_CONTENT, ADMISSION_PROGRAM_CONTENT } from '../content/en/programs.ts';
+import { PROGRAMS_INDEX_CONTENT, SSC_PROGRAM_CONTENT, HSC_PROGRAM_CONTENT, ADMISSION_PROGRAM_CONTENT, FINAL_SPRINT_PROGRAM_CONTENT } from '../content/en/programs.ts';
 import { BATCHES } from '../content/site-config.ts';
 
 export function renderProgramsPage(): string {
@@ -15,21 +16,32 @@ export function renderProgramsPage(): string {
       target: SSC_PROGRAM_CONTENT.hero.target,
       positioning: SSC_PROGRAM_CONTENT.hero.positioning,
       subjects: SSC_PROGRAM_CONTENT.subjects.map(s => s.name),
-      route: '/programs/ssc'
+      route: '/programs/ssc',
+      buttonLabel: 'View Full Program Details &rarr;'
     },
     {
       title: 'HSC Program (Classes 11–12)',
       target: HSC_PROGRAM_CONTENT.hero.target,
       positioning: HSC_PROGRAM_CONTENT.hero.positioning,
       subjects: HSC_PROGRAM_CONTENT.subjects.map(s => s.name),
-      route: '/programs/hsc'
+      route: '/programs/hsc',
+      buttonLabel: 'View Full Program Details &rarr;'
     },
     {
       title: 'Admission Test Program',
       target: ADMISSION_PROGRAM_CONTENT.hero.target,
       positioning: ADMISSION_PROGRAM_CONTENT.hero.positioning,
       subjects: ADMISSION_PROGRAM_CONTENT.subjects.map(s => s.name),
-      route: '/programs/admission'
+      route: '/programs/admission',
+      buttonLabel: 'View Full Program Details &rarr;'
+    },
+    {
+      title: FINAL_SPRINT_PROGRAM_CONTENT.hero.headline,
+      target: FINAL_SPRINT_PROGRAM_CONTENT.hero.target,
+      positioning: FINAL_SPRINT_PROGRAM_CONTENT.hero.positioning,
+      subjects: FINAL_SPRINT_PROGRAM_CONTENT.subjects.map(s => s.name),
+      route: '/admission',
+      buttonLabel: 'Explore FINAL SPRINT &rarr;'
     }
   ];
 
@@ -44,27 +56,27 @@ export function renderProgramsPage(): string {
         </div>
       </section>
 
-      <!-- Programs Grid -->
+      <!-- Programs Grid (4 Core Programs) -->
       <section class="section">
         <div class="container">
-          <div class="grid grid-3 gap-6">
+          <div class="grid grid-4 gap-6">
             ${programList.map(prog => `
               <div class="card card-interactive flex flex-col justify-between" style="padding: var(--space-6);">
                 <div>
                   <span class="badge badge-primary mb-3">${prog.target}</span>
-                  <h2 class="text-h3" style="font-size: 24px; margin-bottom: 8px;">${prog.title}</h2>
-                  <p class="text-body text-muted mb-4" style="font-size: 15px;">${prog.positioning}</p>
+                  <h2 class="text-h3" style="font-size: 21px; margin-bottom: 8px;">${prog.title}</h2>
+                  <p class="text-body text-muted mb-4" style="font-size: 14.5px; line-height: 1.55;">${prog.positioning}</p>
 
                   <div class="mb-6">
-                    <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 6px;">Curriculum Subjects:</span>
+                    <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 6px;">${prog.title.includes('FINAL SPRINT') ? 'Key Focus:' : 'Curriculum Subjects:'}</span>
                     <ul class="flex flex-col gap-1">
                       ${prog.subjects.map(s => `<li class="text-small" style="font-weight: 500;">&bull; ${s}</li>`).join('')}
                     </ul>
                   </div>
                 </div>
 
-                <a href="${prog.route}" class="btn btn-primary btn-sm w-full" data-route="${prog.route}">
-                  View Full Program Details &rarr;
+                <a href="${prog.route}" class="btn btn-secondary btn-sm w-full" data-route="${prog.route}">
+                  ${prog.buttonLabel}
                 </a>
               </div>
             `).join('')}
@@ -72,7 +84,7 @@ export function renderProgramsPage(): string {
         </div>
       </section>
 
-      <!-- Batch Architecture -->
+      <!-- Coaching Integrity & Batch Schedules -->
       <section class="section section-surface">
         <div class="container">
           <div class="max-w-prose mx-auto text-center mb-8">
@@ -82,15 +94,28 @@ export function renderProgramsPage(): string {
             <p class="text-body text-muted mt-2">${c.batchInfo.scheduleNote}</p>
           </div>
 
-          <div class="grid grid-4 gap-4">
+          <!-- 4 Batch Timing Cards -->
+          <div class="grid grid-4 gap-4 mb-6">
             ${BATCHES.map(b => `
               <div class="card" style="text-align: center; padding: var(--space-5);">
-                <span class="badge badge-neutral mb-2">Cohort</span>
-                <h3 class="text-h3" style="font-size: 20px;">Batch ${b.name}</h3>
-                <p class="text-small text-muted mt-2">Max ${b.maxStudents} Students</p>
-                <p class="text-small text-muted">Uttara & Patuatuli</p>
+                <h3 class="text-h3" style="font-size: 20px; color: var(--color-ink);">Batch ${b.name}</h3>
+                <p class="text-lead" style="font-size: 16px; font-weight: 600; color: var(--color-primary); margin-top: var(--space-2);">${b.scheduleStatus}</p>
               </div>
             `).join('')}
+          </div>
+
+          <!-- 2 Campus Schedule Cards -->
+          <div class="grid grid-2 gap-4">
+            <div class="card" style="padding: var(--space-5); text-align: center; border-top: 3px solid var(--color-primary);">
+              <h3 class="text-h3" style="font-size: 19px; margin-bottom: 6px;">Uttara Campus</h3>
+              <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 4px;">Schedule</span>
+              <p class="text-body" style="font-weight: 600; color: var(--color-ink);">Saturday / Monday / Wednesday</p>
+            </div>
+            <div class="card" style="padding: var(--space-5); text-align: center; border-top: 3px solid var(--color-primary);">
+              <h3 class="text-h3" style="font-size: 19px; margin-bottom: 6px;">Patuatuli Campus</h3>
+              <span class="text-label" style="font-size: 11px; display: block; margin-bottom: 4px;">Schedule</span>
+              <p class="text-body" style="font-weight: 600; color: var(--color-ink);">Sunday / Tuesday / Thursday</p>
+            </div>
           </div>
         </div>
       </section>

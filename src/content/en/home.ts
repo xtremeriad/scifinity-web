@@ -8,13 +8,14 @@ import { SCIFINITY_OWNER_DATA } from '../placeholders.ts';
 
 export const HOME_CONTENT = {
   hero: {
-    headline: 'Where Learning Becomes Understanding.',
+    headline: 'Where ingenuity meets curiosity.',
     supporting: 'SCIFINITY is a mentor-led educational ecosystem for SSC, HSC and Admission Test students—built to make learning meaningful, analytical and engaging.',
     pillars: [
-      { label: 'Est. 2014', detail: 'Over 12 years of mentorship' },
-      { label: 'Small Batches', detail: 'Maximum 15 students per batch' },
-      { label: 'Founder-Led', detail: 'EEE (IUT) Engineering Pedagogy' },
-      { label: 'Core Programs', detail: 'SSC | HSC | Admission Test' }
+      { label: 'EST. 2014', detail: 'Over 12 years of mentorship' },
+      { label: 'SMALL BATCHES', detail: 'Maximum 15 students per batch' },
+      { label: 'FOUNDER-LED', detail: 'EEE (IUT) Engineering Pedagogy' },
+      { label: 'CORE PROGRAMS', detail: 'SSC | HSC | Admission Test' },
+      { label: 'NCTB CURRICULUM', detail: 'Bangla Medium | English Version' }
     ],
     primaryCta: { label: 'Apply for Admission', route: '/admission' },
     secondaryCta: { label: 'Explore Our System', route: '/system' },
@@ -96,9 +97,31 @@ export const HOME_CONTENT = {
         subjects: ['Higher Mathematics', 'Physics', 'Chemistry'],
         summary: 'Rigorous engineering and university A-Unit preparation focused on first-principles problem deconstruction.',
         route: '/programs/admission'
+      },
+      {
+        id: 'final-sprint',
+        title: 'FINAL SPRINT Batch',
+        classes: 'SSC & HSC',
+        subjects: [
+          'SSC Final Preparation',
+          'HSC Final Preparation',
+          'Intensive Revision',
+          'Problem-Solving Practice',
+          'Examination Strategy'
+        ],
+        summary: 'An intensive final-stage preparation program for SSC and HSC students after their respective Test Examinations—focused on revision, problem-solving, exam strategy, and stronger board examination performance.',
+        route: '/programs'
       }
     ],
     cta: { label: 'View All Programs', route: '/programs' },
+    status: 'CONFIRMED' as const
+  },
+  collaborationIntro: {
+    eyebrow: 'COLLABORATION',
+    headline: 'Learn Beyond the Classroom',
+    supportingLine: 'What if learning could also mean creating, contributing, and experiencing the real world?',
+    description: 'SCIFINITY creates opportunities for students to participate in meaningful academic, creative, and real-world collaborative experiences.',
+    cta: { label: 'Explore Collaboration', route: '/collaboration' },
     status: 'CONFIRMED' as const
   },
   founderSummary: {
@@ -126,6 +149,15 @@ export const HOME_CONTENT = {
       'Build Genuine Confidence',
       'Independent Thinking'
     ],
+    status: 'CONFIRMED' as const
+  },
+  connectIntro: {
+    eyebrow: 'SCIFINITY CONNECT',
+    headline: 'Something on Your Mind?',
+    supportingLine: 'Not every problem has an answer in a textbook.',
+    body: "A difficult subject. A change in motivation. Trouble maintaining a routine. Uncertainty about what comes next. Or simply something about your child's learning that you want to understand.",
+    subtext: 'You can talk to us.',
+    cta: { label: 'Explore SCIFINITY Connect', route: '/connect' },
     status: 'CONFIRMED' as const
   },
   storiesNotice: {

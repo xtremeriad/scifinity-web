@@ -120,3 +120,23 @@ export const ADMISSION_PROGRAM_CONTENT = {
     futureStatus: 'Comprehensive solved board and admission question repository (Currently PLANNED).'
   }
 };
+
+export const FINAL_SPRINT_PROGRAM_CONTENT = {
+  meta: {
+    title: 'FINAL SPRINT Batch (SSC & HSC) — SCIFINITY',
+    description: 'Intensive final-stage preparation program for SSC and HSC candidates after Test Examinations. Revision, problem-solving, and exam strategy.'
+  },
+  hero: {
+    eyebrow: 'FINAL STAGE — SSC & HSC',
+    headline: 'FINAL SPRINT Batch',
+    positioning: 'An intensive final-stage preparation program for SSC and HSC students after their respective Test Examinations—focused on final revision, problem-solving, examination strategy, and stronger board-examination performance.',
+    target: 'SSC & HSC'
+  },
+  subjects: [
+    { name: 'SSC Final Preparation', focus: 'Targeted revision and board question strategy across SSC subjects.' },
+    { name: 'HSC Final Preparation', focus: 'Comprehensive board exam simulations and analytical mastery for HSC.' },
+    { name: 'Intensive Revision', focus: 'Systematic reviews of high-yield concepts and error-prone areas.' },
+    { name: 'Problem-Solving Practice', focus: 'Rigorous application practice under timed examination conditions.' },
+    { name: 'Examination Strategy', focus: 'Mark distribution tactics, time management, and structured presentation.' }
+  ]
+};

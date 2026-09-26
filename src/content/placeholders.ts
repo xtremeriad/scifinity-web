@@ -178,10 +178,10 @@ export const SCIFINITY_OWNER_DATA: OwnerPlaceholders = {
   schedules: {
     uttaraDays: 'Saturday – Monday – Wednesday',
     patuatuliDays: 'Sunday – Tuesday – Thursday',
-    dawnTiming: '7:00 AM – 8:30 AM',
-    zenithTiming: '8:45 AM – 10:15 AM',
-    primeTiming: '3:30 PM – 5:00 PM',
-    vesperTiming: '5:15 PM – 6:45 PM',
+    dawnTiming: '7:00 AM–8:30 AM',
+    zenithTiming: '8:30 AM–10:00 AM',
+    primeTiming: '4:00 PM–5:30 PM',
+    vesperTiming: '5:30 PM–7:00 PM',
     intakeStatus: '[UPCOMING INTAKE DATES NOT YET PROVIDED]',
     isScheduleConfirmed: true
   },
@@ -191,7 +191,7 @@ export const SCIFINITY_OWNER_DATA: OwnerPlaceholders = {
     displayName: 'RASHED-UZ-ZAMAN NOOR',
     degree: 'BSc in Electrical and Electronic Engineering (EEE), Islamic University of Technology (IUT)',
     mentoringSpan: 'Connected to student mentorship since 2014 (approx. 12 years)',
-    approvedStatement: '“Success is easy to gain, but difficult to hold on to. What truly matters is not reaching the top, but having the discipline, integrity, and dedication to remain there.”',
+    approvedStatement: '‘Success is easy to gain, but difficult to hold on to. What truly matters is not reaching the top, but having the discipline, integrity, and dedication to remain there.’',
     portraitImagePath: '/assets/founder.png',
     signatureImagePath: '/assets/founder-signature.png',
     isPhotoProvided: true

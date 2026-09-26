@@ -1,7 +1,7 @@
 /* ==========================================================================
    FOOTER COMPONENT
    Source: 15_GLOBAL_SHELL_COMPONENTS_AND_DESIGN.md
-   Updated with official verified contact coordinates and social channels.
+   Baseline footer structure with official QR code, WhatsApp, and Collaboration.
    ========================================================================== */
 
 import { SITE_CONFIG } from '../../content/site-config.ts';
@@ -12,12 +12,13 @@ export function renderFooter(): string {
   const isBn = store.language === 'bn';
   const c = SCIFINITY_OWNER_DATA.contact;
   const loc = SCIFINITY_OWNER_DATA.locations;
+  const qrCodeUrl = '/assets/scifinity-social-qr.png';
 
   return `
     <footer class="site-footer" role="contentinfo">
       <div class="container">
         <div class="footer-top-grid">
-          <!-- Identity Column -->
+          <!-- Identity Column with Social QR -->
           <div>
             <div class="flex items-center gap-3 mb-4">
               <div class="brand-symbol" style="background: #2563EB; color: #FFFFFF;" aria-hidden="true">S</div>
@@ -26,9 +27,20 @@ export function renderFooter(): string {
             <p class="text-small" style="color: #94A3B8; margin-bottom: var(--space-4); max-width: 320px;">
               ${isBn ? 'এসএসসি, এইচএসসি এবং অ্যাডমিশন টেস্ট শিক্ষার্থীদের জন্য একটি মেন্টর-পরিচালিত শিক্ষামূলক ইকোসিস্টেম।' : 'A mentor-led educational ecosystem for SSC, HSC and Admission Test students—built to make learning meaningful, analytical and engaging.'}
             </p>
-            <p class="text-small text-muted" style="font-size: 13px;">
-              Est. 2014 &bull; Max 15 students per batch
-            </p>
+            
+            <!-- Prominent QR Connect Hub -->
+            <div style="margin-top: var(--space-3); margin-bottom: var(--space-2);">
+              <div style="background: #FFFFFF; padding: 10px; border-radius: var(--radius-sm); display: inline-block; box-shadow: var(--shadow-xs); text-align: center;">
+                <img 
+                  src="${qrCodeUrl}" 
+                  alt="Connect with SCIFINITY QR Code" 
+                  style="width: 136px; height: 136px; object-fit: contain; background: #FFFFFF; display: block; margin: 0 auto;" 
+                />
+                <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-primary); display: block; margin-top: 6px;">
+                  ${isBn ? 'সংযুক্ত থাকুন' : 'Connect With Us'}
+                </span>
+              </div>
+            </div>
           </div>
 
           <!-- Explore Column -->
@@ -47,7 +59,7 @@ export function renderFooter(): string {
           <div>
             <h3 class="footer-col-title">${isBn ? 'সুযোগ' : 'Opportunities'}</h3>
             <ul class="footer-link-list">
-              <li><a href="/golden-seat" class="footer-link" data-route="/golden-seat">${isBn ? 'গোল্ডেন সিট' : 'Golden Seat'}</a></li>
+              <li><a href="/golden-seat" class="footer-link" data-route="/golden-seat">${isBn ? 'গোল্ডেন সিট' : 'The Golden Seat'}</a></li>
               <li><a href="/admission" class="footer-link" data-route="/admission">${isBn ? 'ভর্তি আবেদন' : 'Admission'}</a></li>
               <li><a href="/programs/ssc" class="footer-link" data-route="/programs/ssc">${isBn ? 'এসএসসি প্রোগ্রাম' : 'SSC Batch'}</a></li>
               <li><a href="/programs/hsc" class="footer-link" data-route="/programs/hsc">${isBn ? 'এইচএসসি প্রোগ্রাম' : 'HSC Batch'}</a></li>
@@ -60,6 +72,7 @@ export function renderFooter(): string {
             <h3 class="footer-col-title">${isBn ? 'রিসোর্স' : 'Resources'}</h3>
             <ul class="footer-link-list">
               <li><a href="/vault" class="footer-link" data-route="/vault">${isBn ? 'দ্য ভল্ট' : 'The Vault (Free)'}</a></li>
+              <li><a href="/collaboration" class="footer-link" data-route="/collaboration">${isBn ? 'সহযোগিতা' : 'Collaboration'}</a></li>
               <li><a href="/vault" class="footer-link" data-route="/vault">${isBn ? 'স্টাডি টিপস' : 'Study Tips'}</a></li>
               <li><a href="/vault" class="footer-link" data-route="/vault">${isBn ? 'ফিজিক্স টিপস' : 'Physics Tips'}</a></li>
               <li><a href="/vault" class="footer-link" data-route="/vault">${isBn ? 'ম্যাথ ট্রিকস' : 'Math Tricks'}</a></li>
@@ -72,14 +85,14 @@ export function renderFooter(): string {
             <ul class="footer-link-list">
               <li>
                 <a href="/locations" class="footer-link" data-route="/locations">
-                  <strong>${isBn ? 'উত্তরা সেন্টার' : 'Uttara Center'}</strong>
-                  <span style="display: block; font-size: 13px; color: #64748B;">${loc.uttara.fullLocation}</span>
+                  <strong style="color: #FFFFFF;">${isBn ? 'উত্তরা সেন্টার' : 'Uttara Center'}</strong>
+                  <span style="display: block; font-size: 13px; color: #94A3B8; margin-top: 2px;">${loc.uttara.fullLocation}</span>
                 </a>
               </li>
               <li style="margin-top: 6px;">
                 <a href="/locations" class="footer-link" data-route="/locations">
-                  <strong>${isBn ? 'পাটুয়াটুলী সেন্টার' : 'Patuatuli Center'}</strong>
-                  <span style="display: block; font-size: 13px; color: #64748B;">${loc.patuatuli.fullLocation}</span>
+                  <strong style="color: #FFFFFF;">${isBn ? 'পাটুয়াটুলী সেন্টার' : 'Patuatuli Center'}</strong>
+                  <span style="display: block; font-size: 13px; color: #94A3B8; margin-top: 2px;">${loc.patuatuli.fullLocation}</span>
                 </a>
               </li>
             </ul>
@@ -89,13 +102,13 @@ export function renderFooter(): string {
           <div>
             <h3 class="footer-col-title">${isBn ? 'যোগাযোগ' : 'Contact'}</h3>
             <ul class="footer-link-list">
-              <li><a href="tel:${c.phone}" class="footer-link" style="color: #CBD5E1;">Phone: ${c.phone}</a></li>
-              <li><a href="mailto:${c.email}" class="footer-link" style="color: #CBD5E1;">${c.email}</a></li>
-              <li><a href="https://wa.me/88${c.whatsapp.replace(/\D/g, '')}" target="_blank" rel="noopener noreferrer" class="footer-link" style="color: #22C55E;">WhatsApp: ${c.whatsapp}</a></li>
-              <li style="margin-top: 4px;">
-                <a href="${c.facebookUrl}" target="_blank" rel="noopener noreferrer" class="footer-link" style="color: #60A5FA;">Facebook</a>
+              <li><a href="tel:${c.phone}" class="footer-link" style="color: #CBD5E1; white-space: nowrap;">📞 ${c.phone}</a></li>
+              <li><a href="https://wa.me/88${c.whatsapp.replace(/\D/g, '')}" target="_blank" rel="noopener noreferrer" class="footer-link" style="color: #4ADE80; font-weight: 600; white-space: nowrap;">💬 ${c.whatsapp}</a></li>
+              <li><a href="mailto:${c.email}" class="footer-link" style="color: #CBD5E1; white-space: nowrap;">✉️ ${c.email}</a></li>
+              <li style="margin-top: 6px;">
+                <a href="${c.facebookUrl}" target="_blank" rel="noopener noreferrer" class="footer-link" style="color: #60A5FA; font-weight: 600;">Facebook</a>
                 <span style="color: #475569; margin: 0 4px;">&bull;</span>
-                <a href="${c.instagramUrl}" target="_blank" rel="noopener noreferrer" class="footer-link" style="color: #F472B6;">Instagram</a>
+                <a href="${c.instagramUrl}" target="_blank" rel="noopener noreferrer" class="footer-link" style="color: #F472B6; font-weight: 600;">Instagram</a>
               </li>
             </ul>
           </div>

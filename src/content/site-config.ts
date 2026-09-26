@@ -45,16 +45,18 @@ export const NAVIGATION_ITEMS: NavItem[] = [
   { id: 'programs', labelEn: 'Programs', labelBn: 'প্রোগ্রামসমূহ', route: '/programs', category: 'WHAT' },
   { id: 'founder', labelEn: 'Founder & Mentor', labelBn: 'প্রতিষ্ঠাতা ও মেন্টর', route: '/founder', category: 'WHO' },
   { id: 'success', labelEn: 'Success & Stories', labelBn: 'সাফল্য ও গল্প', route: '/success', category: 'EVIDENCE' },
-  { id: 'golden-seat', labelEn: 'Golden Seat', labelBn: 'গোল্ডেন সিট', route: '/golden-seat', category: 'OPPORTUNITY' },
+  { id: 'golden-seat', labelEn: 'The Golden Seat', labelBn: 'দ্য গোল্ডেন সিট', route: '/golden-seat', category: 'OPPORTUNITY' },
   { id: 'vault', labelEn: 'The Vault', labelBn: 'দ্য ভল্ট', route: '/vault', category: 'RESOURCES' },
+  { id: 'collaboration', labelEn: 'Collaboration', labelBn: 'সহযোগিতা', route: '/collaboration', category: 'WHAT' },
+  { id: 'connect', labelEn: 'SCIFINITY Connect', labelBn: 'সাইফিনিটি কানেক্ট', route: '/connect', category: 'WHAT' },
   { id: 'locations', labelEn: 'Locations', labelBn: 'লোকেশনসমূহ', route: '/locations', category: 'WHERE' }
 ];
 
 export const BATCHES: BatchDefinition[] = [
-  { name: 'Dawn', maxStudents: 15, locations: ['Uttara', 'Patuatuli'], scheduleStatus: '7:00 AM – 8:30 AM' },
-  { name: 'Zenith', maxStudents: 15, locations: ['Uttara', 'Patuatuli'], scheduleStatus: '8:45 AM – 10:15 AM' },
-  { name: 'Prime', maxStudents: 15, locations: ['Uttara', 'Patuatuli'], scheduleStatus: '3:30 PM – 5:00 PM' },
-  { name: 'Vesper', maxStudents: 15, locations: ['Uttara', 'Patuatuli'], scheduleStatus: '5:15 PM – 6:45 PM' }
+  { name: 'Dawn', maxStudents: 15, locations: ['Uttara', 'Patuatuli'], scheduleStatus: '7:00 AM–8:30 AM' },
+  { name: 'Zenith', maxStudents: 15, locations: ['Uttara', 'Patuatuli'], scheduleStatus: '8:30 AM–10:00 AM' },
+  { name: 'Prime', maxStudents: 15, locations: ['Uttara', 'Patuatuli'], scheduleStatus: '4:00 PM–5:30 PM' },
+  { name: 'Vesper', maxStudents: 15, locations: ['Uttara', 'Patuatuli'], scheduleStatus: '5:30 PM–7:00 PM' }
 ];
 
 export const LOCATIONS: LocationInfo[] = [
