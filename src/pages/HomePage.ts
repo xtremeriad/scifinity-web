@@ -27,10 +27,12 @@ export function renderHomePage(): string {
             <span class="status-tag review">[TRANSLATION_REQUIRED]</span>
           </div>
         </div>
-      ` : ''}
+          ` : ''}
 
-      <!-- ==================================================================
-           Section 01: Hero (Technology + Education 3D Atmosphere)
+    <div id="homepage-dynamic-banner"></div>
+
+    <!-- ============================================================
+         Section 01: Hero (Technology + Education 3D Atmosphere)
            ================================================================== -->
       <section class="section section-hero">
         <div class="container">

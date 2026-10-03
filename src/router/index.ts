@@ -24,6 +24,20 @@ import { renderCollaborationPage } from '../pages/CollaborationPage.ts';
 import { renderConnectPage } from '../pages/ConnectPage.ts';
 import { renderPrivacyPage } from '../pages/PrivacyPage.ts';
 import { renderTermsPage } from '../pages/TermsPage.ts';
+import {
+  renderAdminLoginPage,
+  attachAdminLoginHandlers
+} from '../pages/AdminLoginPage.ts';
+
+import {
+  renderAdminDashboardPage,
+  attachAdminDashboardHandlers
+} from '../pages/AdminDashboardPage.ts';
+
+import {
+  renderAdminBannersPage,
+  attachAdminBannersHandlers
+} from '../pages/AdminBannersPage.ts';
 
 import { updatePageSEO } from '../utils/seo.ts';
 import { validateAdmissionForm } from '../utils/validation.ts';
@@ -118,10 +132,28 @@ const ROUTE_MAP: Record<string, RouteDefinition> = {
     render: renderPrivacyPage
   },
   '/terms': {
-    title: 'Terms of Admission — SCIFINITY',
-    description: 'Academic expectations, batch attendance, and code of conduct.',
-    render: renderTermsPage
-  }
+  title: 'Terms of Admission — SCIFINITY',
+  description: 'Academic expectations, batch attendance, and code of conduct.',
+  render: renderTermsPage
+},
+
+'/admin': {
+  title: 'SCIFINITY Admin',
+  description: 'SCIFINITY website content and platform administration.',
+  render: renderAdminDashboardPage
+},
+
+'/admin/banners': {
+  title: 'Homepage Banners — SCIFINITY Admin',
+  description: 'Manage SCIFINITY homepage banners, campaigns and featured content.',
+  render: renderAdminBannersPage
+},
+
+'/admin/login': {
+  title: 'SCIFINITY Admin Login',
+  description: 'Secure administration access for SCIFINITY.',
+  render: renderAdminLoginPage
+}
 };
 
 export class Router {
@@ -187,15 +219,27 @@ export class Router {
     updatePageSEO(routeDef.title, routeDef.description);
 
     this.appElement.innerHTML = `
-      ${renderHeader(currentPath)}
-      ${renderMobileNav(currentPath)}
-      ${routeDef.render()}
-      ${renderFooter()}
-    `;
+  ${renderHeader(currentPath)}
+  ${renderMobileNav(currentPath)}
+  ${routeDef.render()}
+  ${renderFooter()}
+`;
 
-    this.attachEventListeners();
-  }
+this.attachEventListeners();
 
+if (currentPath === '/admin/login') {
+  attachAdminLoginHandlers();
+}
+
+if (currentPath === '/admin') {
+  attachAdminDashboardHandlers();
+}
+
+if (currentPath === '/admin/banners') {
+  attachAdminBannersHandlers();
+}
+
+} 
   private attachEventListeners() {
     // Language buttons
     document.querySelectorAll('[data-lang]').forEach(btn => {
