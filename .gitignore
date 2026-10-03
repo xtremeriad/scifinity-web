@@ -31,3 +31,8 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+# SCIFINITY AI audit reports
+.scifinity/audit/
+
+# SCIFINITY AI review outputs
+.scifinity/ai-review/
