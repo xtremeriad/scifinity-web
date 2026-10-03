@@ -3,11 +3,14 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "tsc && vite build",
+  "preview": "vite preview",
+  "audit:website": "node scripts/scifinity-audit.mjs",
+  "audit:website:build": "node scripts/scifinity-audit.mjs --build",
+  "ai:review": "node scripts/scifinity-ai-review.mjs"
+},
     "devDependencies": {
     "typescript": "^5.4.5",
     "vite": "^5.2.11"
