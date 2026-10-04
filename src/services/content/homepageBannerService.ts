@@ -10,10 +10,34 @@
  * - Read all banners for the admin portal
  * - Create banners
  * - Update banners
- * - Archive/delete banners
+ * - Archive banners
+ * - Publish banners
+ * - Permanently delete banners
+ *
+ * IMPORTANT SECURITY RULE:
  *
  * The UI should NOT call Firestore directly.
+ *
  * All homepage-banner Firestore access should go through this service.
+ *
+ * Also:
+ *
+ * CREATE:
+ *   Raw input
+ *      ↓
+ *   Validation
+ *      ↓
+ *   Firestore
+ *
+ * UPDATE:
+ *   Raw update input
+ *      ↓
+ *   Validation
+ *      ↓
+ *   Firestore
+ *
+ * Raw CMS input must never be written directly to Firestore.
+ * ============================================================================
  */
 
 import {
@@ -34,6 +58,18 @@ import {
 import { getFirestoreDb } from '../firebase/firestore.ts';
 import { waitForAuthReady } from '../firebase/auth.ts';
 
+import {
+  validateCreateHomepageBannerInput,
+  validateUpdateHomepageBannerInput,
+} from './cmsValidation.ts';
+
+
+/*
+ * ============================================================================
+ * BANNER TYPES
+ * ============================================================================
+ */
+
 export type BannerStatus =
   | 'DRAFT'
   | 'REVIEW'
@@ -50,16 +86,32 @@ export type BannerType =
   | 'COURSE'
   | 'GENERAL';
 
+
+/*
+ * ============================================================================
+ * SHARED TYPES
+ * ============================================================================
+ */
+
 export interface LocalizedText {
   en: string;
   bn: string;
 }
 
+
+/*
+ * ============================================================================
+ * HOMEPAGE BANNER
+ * ============================================================================
+ */
+
 export interface HomepageBanner {
   id: string;
 
   title: LocalizedText;
+
   subtitle: LocalizedText;
+
   description: LocalizedText;
 
   desktopImage: {
@@ -84,6 +136,7 @@ export interface HomepageBanner {
   priority: number;
 
   startAt: Date | null;
+
   endAt: Date | null;
 
   status: BannerStatus;
@@ -91,12 +144,22 @@ export interface HomepageBanner {
   featured: boolean;
 
   createdAt: Date | null;
+
   updatedAt: Date | null;
 }
 
+
+/*
+ * ============================================================================
+ * CREATE INPUT
+ * ============================================================================
+ */
+
 export interface CreateHomepageBannerInput {
   title: LocalizedText;
+
   subtitle?: LocalizedText;
+
   description?: LocalizedText;
 
   desktopImage: {
@@ -121,6 +184,7 @@ export interface CreateHomepageBannerInput {
   priority?: number;
 
   startAt?: Date | null;
+
   endAt?: Date | null;
 
   status?: BannerStatus;
@@ -128,7 +192,20 @@ export interface CreateHomepageBannerInput {
   featured?: boolean;
 }
 
+
+/*
+ * ============================================================================
+ * FIRESTORE TIMESTAMP → JAVASCRIPT DATE
+ * ============================================================================
+ *
+ * Firestore returns Timestamp objects.
+ * The rest of the application uses JavaScript Date objects.
+ *
+ * This function safely converts a Firestore Timestamp into a Date.
+ */
+
 function timestampToDate(value: unknown): Date | null {
+
   if (!value) {
     return null;
   }
@@ -139,15 +216,27 @@ function timestampToDate(value: unknown): Date | null {
     'toDate' in value &&
     typeof (value as { toDate?: unknown }).toDate === 'function'
   ) {
-    return (value as { toDate: () => Date }).toDate();
+    return (
+      value as {
+        toDate: () => Date;
+      }
+    ).toDate();
   }
 
   return null;
 }
 
+
+/*
+ * ============================================================================
+ * FIRESTORE DOCUMENT → HOMEPAGE BANNER
+ * ============================================================================
+ */
+
 function mapBanner(
   snapshot: QueryDocumentSnapshot<DocumentData>
 ): HomepageBanner {
+
   const data = snapshot.data();
 
   return {
@@ -196,205 +285,451 @@ function mapBanner(
 
     bannerType: data.bannerType ?? 'GENERAL',
 
-    priority: Number(data.priority ?? 0),
+    priority: Number(
+      data.priority ?? 0
+    ),
 
-    startAt: timestampToDate(data.startAt),
-    endAt: timestampToDate(data.endAt),
+    startAt: timestampToDate(
+      data.startAt
+    ),
+
+    endAt: timestampToDate(
+      data.endAt
+    ),
 
     status: data.status ?? 'DRAFT',
 
-    featured: Boolean(data.featured),
+    featured: Boolean(
+      data.featured
+    ),
 
-    createdAt: timestampToDate(data.createdAt),
-    updatedAt: timestampToDate(data.updatedAt),
+    createdAt: timestampToDate(
+      data.createdAt
+    ),
+
+    updatedAt: timestampToDate(
+      data.updatedAt
+    ),
   };
 }
 
-/**
- * --------------------------------------------------------------------------
+
+/*
+ * ============================================================================
  * PUBLIC HOMEPAGE
- * --------------------------------------------------------------------------
+ * ============================================================================
  *
  * Returns banners that are currently published.
  *
- * Date filtering is also performed in application code so the service
- * remains safe if the Firestore query/index strategy changes later.
+ * Firestore query:
+ * - status must be PUBLISHED
+ * - priority is descending
+ *
+ * Additional date filtering is performed in application code.
  */
+
 export async function getPublishedHomepageBanners(): Promise<
   HomepageBanner[]
 > {
+
   const db = getFirestoreDb();
 
-  const bannersRef = collection(db, 'homepageBanners');
+  const bannersRef = collection(
+    db,
+    'homepageBanners'
+  );
 
   const bannersQuery = query(
     bannersRef,
-    where('status', '==', 'PUBLISHED'),
-    orderBy('priority', 'desc')
+
+    where(
+      'status',
+      '==',
+      'PUBLISHED'
+    ),
+
+    orderBy(
+      'priority',
+      'desc'
+    )
   );
 
-  const snapshot = await getDocs(bannersQuery);
+  const snapshot = await getDocs(
+    bannersQuery
+  );
 
   const now = new Date();
 
   return snapshot.docs
     .map(mapBanner)
     .filter((banner) => {
+
       const starts =
-        !banner.startAt || banner.startAt.getTime() <= now.getTime();
+        !banner.startAt ||
+        banner.startAt.getTime() <= now.getTime();
 
       const notExpired =
-        !banner.endAt || banner.endAt.getTime() >= now.getTime();
+        !banner.endAt ||
+        banner.endAt.getTime() >= now.getTime();
 
-      return starts && notExpired;
+      return (
+        starts &&
+        notExpired
+      );
     });
 }
 
-/**
- * --------------------------------------------------------------------------
- * ADMIN
- * --------------------------------------------------------------------------
+
+/*
+ * ============================================================================
+ * ADMIN — GET ALL BANNERS
+ * ============================================================================
  *
- * Returns all banners, including drafts and archived banners.
+ * Returns all banners:
+ * - DRAFT
+ * - REVIEW
+ * - APPROVED
+ * - SCHEDULED
+ * - PUBLISHED
+ * - ARCHIVED
  */
-export async function getAllHomepageBanners(): Promise<HomepageBanner[]> {
+
+export async function getAllHomepageBanners(): Promise<
+  HomepageBanner[]
+> {
+
   await waitForAuthReady();
 
   const db = getFirestoreDb();
 
-  const bannersRef = collection(db, 'homepageBanners');
+  const bannersRef = collection(
+    db,
+    'homepageBanners'
+  );
 
   const bannersQuery = query(
     bannersRef,
-    orderBy('priority', 'desc')
+
+    orderBy(
+      'priority',
+      'desc'
+    )
   );
 
-  const snapshot = await getDocs(bannersQuery);
+  const snapshot = await getDocs(
+    bannersQuery
+  );
 
-  return snapshot.docs.map(mapBanner);
+  return snapshot.docs.map(
+    mapBanner
+  );
 }
 
-/**
- * Create a new homepage banner.
+
+/*
+ * ============================================================================
+ * CREATE HOMEPAGE BANNER
+ * ============================================================================
+ *
+ * IMPORTANT:
+ *
+ * The input is validated BEFORE anything is written to Firestore.
  */
+
 export async function createHomepageBanner(
   input: CreateHomepageBannerInput
 ): Promise<string> {
+
+  /*
+   * Make sure Firebase Authentication is ready.
+   */
+
   await waitForAuthReady();
+
+
+  /*
+   * Validate and normalize the input.
+   *
+   * Nothing from the raw input is written directly to Firestore.
+   */
+
+  const validatedInput =
+    validateCreateHomepageBannerInput(
+      input
+    );
+
+
+  /*
+   * Get Firestore.
+   */
 
   const db = getFirestoreDb();
 
-  const bannersRef = collection(db, 'homepageBanners');
+
+  /*
+   * Get the homepageBanners collection.
+   */
+
+  const bannersRef = collection(
+    db,
+    'homepageBanners'
+  );
+
+
+  /*
+   * Build the Firestore document.
+   *
+   * IMPORTANT:
+   *
+   * Every CMS field comes from validatedInput.
+   * We do NOT use raw input here.
+   */
 
   const documentData = {
-    title: input.title,
 
-    subtitle: input.subtitle ?? {
-      en: '',
-      bn: '',
-    },
+    title:
+      validatedInput.title,
 
-    description: input.description ?? {
-      en: '',
-      bn: '',
-    },
+    subtitle:
+      validatedInput.subtitle,
 
-    desktopImage: input.desktopImage,
+    description:
+      validatedInput.description,
 
-    mobileImage: input.mobileImage ?? input.desktopImage,
+    desktopImage:
+      validatedInput.desktopImage,
 
-    cta: input.cta ?? {
-      enabled: false,
-      label: {
-        en: '',
-        bn: '',
-      },
-      url: '',
-      external: false,
-    },
+    mobileImage:
+      validatedInput.mobileImage,
 
-    bannerType: input.bannerType,
+    cta:
+      validatedInput.cta,
 
-    priority: input.priority ?? 0,
+    bannerType:
+      validatedInput.bannerType,
 
-    startAt: input.startAt ?? null,
-    endAt: input.endAt ?? null,
+    priority:
+      validatedInput.priority,
 
-    status: input.status ?? 'DRAFT',
+    startAt:
+      validatedInput.startAt,
 
-    featured: input.featured ?? false,
+    endAt:
+      validatedInput.endAt,
 
-    createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp(),
+    status:
+      validatedInput.status,
+
+    featured:
+      validatedInput.featured,
+
+    createdAt:
+      serverTimestamp(),
+
+    updatedAt:
+      serverTimestamp(),
   };
 
-  const document = await addDoc(bannersRef, documentData);
+
+  /*
+   * Write the validated document to Firestore.
+   */
+
+  const document = await addDoc(
+    bannersRef,
+    documentData
+  );
+
+
+  /*
+   * Return the newly created document ID.
+   */
 
   return document.id;
 }
 
-/**
- * Update an existing homepage banner.
+
+/*
+ * ============================================================================
+ * UPDATE HOMEPAGE BANNER
+ * ============================================================================
+ *
+ * IMPORTANT:
+ *
+ * An update may contain only a subset of banner fields.
+ *
+ * Example:
+ *
+ * {
+ *   priority: 5
+ * }
+ *
+ * Therefore we use a dedicated UPDATE validator rather than the CREATE
+ * validator.
+ *
+ * Raw update data is NEVER written directly to Firestore.
  */
+
 export async function updateHomepageBanner(
   bannerId: string,
   updates: Partial<CreateHomepageBannerInput>
 ): Promise<void> {
+
+  /*
+   * Make sure Firebase Authentication is ready.
+   */
+
+  await waitForAuthReady();
+
+
+  /*
+   * Validate the update.
+   *
+   * This is the CMS security boundary for updates.
+   */
+
+  const validatedUpdates =
+    validateUpdateHomepageBannerInput(
+      updates
+    );
+
+
+  /*
+   * Get Firestore.
+   */
+
   const db = getFirestoreDb();
 
-  const bannerRef = doc(db, 'homepageBanners', bannerId);
 
-  await updateDoc(bannerRef, {
-    ...updates,
-    updatedAt: serverTimestamp(),
-  });
+  /*
+   * Get the specific banner document.
+   */
+
+  const bannerRef = doc(
+    db,
+    'homepageBanners',
+    bannerId
+  );
+
+
+  /*
+   * Build the update document.
+   *
+   * Only validated fields are written.
+   */
+
+  const updateData = {
+    ...validatedUpdates,
+
+    updatedAt:
+      serverTimestamp(),
+  };
+
+
+  /*
+   * Write the validated update to Firestore.
+   */
+
+  await updateDoc(
+    bannerRef,
+    updateData
+  );
 }
 
-/**
- * Archive a banner without physically deleting it.
+
+/*
+ * ============================================================================
+ * ARCHIVE HOMEPAGE BANNER
+ * ============================================================================
  *
- * This should normally be preferred over deleteHomepageBanner().
+ * Archiving is preferred over permanent deletion.
  */
+
 export async function archiveHomepageBanner(
   bannerId: string
 ): Promise<void> {
+
+  await waitForAuthReady();
+
   const db = getFirestoreDb();
 
-  const bannerRef = doc(db, 'homepageBanners', bannerId);
+  const bannerRef = doc(
+    db,
+    'homepageBanners',
+    bannerId
+  );
 
-  await updateDoc(bannerRef, {
-    status: 'ARCHIVED',
-    updatedAt: serverTimestamp(),
-  });
+  await updateDoc(
+    bannerRef,
+    {
+      status: 'ARCHIVED',
+
+      updatedAt:
+        serverTimestamp(),
+    }
+  );
 }
 
-/**
- * Publish a homepage banner.
+
+/*
+ * ============================================================================
+ * PUBLISH HOMEPAGE BANNER
+ * ============================================================================
  */
+
 export async function publishHomepageBanner(
   bannerId: string
 ): Promise<void> {
+
+  await waitForAuthReady();
+
   const db = getFirestoreDb();
 
-  const bannerRef = doc(db, 'homepageBanners', bannerId);
+  const bannerRef = doc(
+    db,
+    'homepageBanners',
+    bannerId
+  );
 
-  await updateDoc(bannerRef, {
-    status: 'PUBLISHED',
-    updatedAt: serverTimestamp(),
-  });
+  await updateDoc(
+    bannerRef,
+    {
+      status: 'PUBLISHED',
+
+      updatedAt:
+        serverTimestamp(),
+    }
+  );
 }
 
-/**
- * Permanent deletion.
+
+/*
+ * ============================================================================
+ * PERMANENT DELETE
+ * ============================================================================
  *
- * This will later be restricted further through governance/security rules.
+ * Permanent deletion should normally be avoided.
+ *
+ * Archive is preferred.
+ *
+ * This function remains available for controlled administrative use.
  */
+
 export async function deleteHomepageBanner(
   bannerId: string
 ): Promise<void> {
+
+  await waitForAuthReady();
+
   const db = getFirestoreDb();
 
-  const bannerRef = doc(db, 'homepageBanners', bannerId);
+  const bannerRef = doc(
+    db,
+    'homepageBanners',
+    bannerId
+  );
 
-  await deleteDoc(bannerRef);
+  await deleteDoc(
+    bannerRef
+  );
 }

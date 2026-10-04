@@ -9,9 +9,11 @@
     "preview": "vite preview",
     "audit:website": "node scripts/scifinity-audit.mjs",
     "audit:website:build": "node scripts/scifinity-audit.mjs --build",
-    "ai:review": "node scripts/scifinity-ai-review.mjs"
+    "ai:review": "node scripts/scifinity-ai-review.mjs",
+    "test:cms": "tsx scripts/test-cms-validation.ts"
   },
   "devDependencies": {
+    "tsx": "^4.23.15",
     "typescript": "^5.4.5",
     "vite": "^5.2.11"
   },
