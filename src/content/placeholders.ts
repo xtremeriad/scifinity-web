@@ -192,7 +192,7 @@ export const SCIFINITY_OWNER_DATA: OwnerPlaceholders = {
     degree: 'BSc in Electrical and Electronic Engineering (EEE), Islamic University of Technology (IUT)',
     mentoringSpan: 'Connected to student mentorship since 2014 (approx. 12 years)',
     approvedStatement: '‘Success is easy to gain, but difficult to hold on to. What truly matters is not reaching the top, but having the discipline, integrity, and dedication to remain there.’',
-    portraitImagePath: '/assets/founder.png',
+    portraitImagePath: '/assets/founder-web.jpg',
     signatureImagePath: '/assets/founder-signature.png',
     isPhotoProvided: true
   },
@@ -247,8 +247,8 @@ export const SCIFINITY_OWNER_DATA: OwnerPlaceholders = {
 
   // 11. Images & Brand Assets (Verified Supplied Files)
   assets: {
-    logoPath: '/assets/scifinity-logo.png',
-    founderPortraitPath: '/assets/founder.png',
+    logoPath: '/assets/scifinity-logo-web.jpg',
+    founderPortraitPath: '/assets/founder-web.jpg',
     founderSignaturePath: '/assets/founder-signature.png',
     classroomPhotoUttaraPath: undefined,
     classroomPhotoPatuatuliPath: undefined,

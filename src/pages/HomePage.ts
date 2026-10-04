@@ -228,7 +228,7 @@ export function renderHomePage(): string {
               <div style="position: relative; display: inline-block;">
                 <div style="position: absolute; inset: -4px; border-radius: calc(var(--radius-md) + 4px); background: linear-gradient(135deg, rgba(108, 63, 209, 0.6), rgba(8, 126, 139, 0.6)); filter: blur(8px); opacity: 0.7;"></div>
                 <img 
-                  src="/assets/founder.png" 
+                  src="/assets/founder-web.jpg"
                   alt="Rashed-Uz-Zaman Noor — Founder & Mentor, SCIFINITY" 
                   style="position: relative; width: 100%; max-width: 280px; border-radius: var(--radius-md); object-fit: cover; aspect-ratio: 4/5; box-shadow: var(--shadow-dark-card); border: 2px solid rgba(255, 255, 255, 0.2); display: block;" 
                 />

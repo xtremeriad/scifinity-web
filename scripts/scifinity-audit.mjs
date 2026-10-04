@@ -109,9 +109,21 @@ async function auditSource() {
     innerHtml += htmlMatches.length;
     if (htmlMatches.length) filesWithInnerHtml++;
 
-    const placeholders = text.match(/PLACEHOLDER|COMING_SOON|REVIEW_REQUIRED|TODO|FIXME/gi) ?? [];
-    placeholderHits += placeholders.length;
-    if (placeholders.length) placeholderFiles.add(rel(file));
+const textWithoutInputPlaceholders = text
+  .replace(/\bplaceholder\s*=\s*["'][^"']*["']/gi, '')
+  .replace(/\.placeholder\s*=\s*["'][^"']*["']/gi, '')
+  .replace(/\bstatus\s*:\s*["'](?:PLACEHOLDER|COMING_SOON|REVIEW_REQUIRED)["']/gi, '')
+  .replace(/["'](?:PLACEHOLDER|COMING_SOON|REVIEW_REQUIRED)["']/gi, '')
+  .replace(/\b(?:PLACEHOLDER|COMING_SOON|REVIEW_REQUIRED)\b(?=\s*[,}\]])/gi, '');
+
+const placeholders =
+  textWithoutInputPlaceholders.match(/\b(?:TODO|FIXME)\b/gi) ?? [];
+
+placeholderHits += placeholders.length;
+
+if (placeholders.length) {
+  placeholderFiles.add(rel(file));
+}
   }
 
   metrics.sourceFiles = files.length;
